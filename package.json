@@ -1,7 +1,7 @@
 {
   "name": "proyectobasededatos",
   "version": "1.0.0",
-  "description": "base de datos mongo node",
+  "description": "base de datos mongo node para pacientes",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
