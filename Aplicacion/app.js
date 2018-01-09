@@ -17,8 +17,16 @@ const app = express();
 
 
 /*MONGODB*/
+var options = {
+  useMongoClient: true,
+  socketTimeoutMS: 0,
+  keepAlive: true,
+  reconnectTries: 30
+};
+
+
 mongoose.Promise = global.Promise
-mongoose.connect(mongodbRoute,{useMongoClient: true}, (err) => {
+mongoose.connect(mongodbRoute,options, (err) => {
     if (err) {
         return console.log(`Error al conectar a la base de datos: ${err}`)
     }
