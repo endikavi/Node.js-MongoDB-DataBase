@@ -6,13 +6,15 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose =  require ('mongoose')
 
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var prueba = require('./routes/Prueba');
 const mongodbRoute = 'mongodb://endika:endika@ds149865.mlab.com:49865/base_datos_aeg';
 const port = 8080;
 const app = express();
+// Modulos
+
+
 
 /*MONGODB*/
 mongoose.Promise = global.Promise
@@ -23,7 +25,7 @@ mongoose.connect(mongodbRoute,{useMongoClient: true}, (err) => {
     app.listen(port, () => {
 		console.log(`Servidor up en ${port}`);
 	});
-    console.log(`Conexión con Mongo correcta.`)
+    console.log(`Conexión correcta.`)
 });
 
 // view engine setup
