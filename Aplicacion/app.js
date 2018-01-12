@@ -11,7 +11,7 @@ let index = require('./routes/index');
 let users = require('./routes/users');
 let prueba = require('./routes/Prueba');
 const mongodbRoute ='mongodb://endika:endika@ds149865.mlab.com:49865/base_datos_aeg';
-const port = process.env.PORT || 8080;
+const port = 8080;
 const app = express();
 
 // Modulos
