@@ -71,8 +71,7 @@ app.get('/user', function(req, res) {
     User.find().lean().exec(function (err, Users) {
         if (err) return console.error(err);
         let Data = JSON.stringify(Users);
-        console.log('Lista de usuarios:');
-        console.log(Users);
+        console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
         res.send('{"users":[' + Data + ']}');
         
 })
@@ -81,9 +80,9 @@ app.get('/user', function(req, res) {
 //ruta para resetear los usuarios
 app.get('/userreset', function(req, res) {
     
-	console.log('Usuarios recuperados');
+	console.log('Base de datos reiniciada');
     
-	res.send('Usuarios recuperados');
+	res.send('Base de datos reiniciada');
 })
 
 //ruta para añadir usuario
@@ -100,17 +99,20 @@ app.post('/user', urlencodedParser, function(req, res) {
         if (err) return console.error(err);
     });
     
-	console.log(
-        'Usuario añadido: DNI: ' + req.body.dni + 
+	console.log('Usuario añadido:')
+    console.log(
+        "DNI: " + req.body.dni + 
         " Nombre: " + req.body.first_name +
 		" Apellido: " + req.body.last_name +
         " Email: " + req.body.email);
     
 	res.send(
-        'Usuario añadido: DNI: ' + req.body.dni + 
-        " Nombre: " + req.body.first_name +
-		" Apellido: " + req.body.last_name + 
-        " Email: " + req.body.email);
+        "Usuario añadido: " +
+        "<br>  DNI: " + req.body.dni + 
+        "<br>  Nombre: " + req.body.first_name +
+		"<br>  Apellido: " + req.body.last_name + 
+        "<br>  Email: " + req.body.email
+    );
     
 
 })
