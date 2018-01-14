@@ -10,7 +10,6 @@ const urlencodedParser = bodyParser.urlencoded({extended: false})
 let index = require('./routes/index');
 let users = require('./routes/users');
 let prueba = require('./routes/Prueba');
-let pong = require('./routes/pong/pong');
 const mongodbRoute ='mongodb://endika:endika@ds149865.mlab.com:49865/base_datos_aeg';
 const port = 8080;
 const app = express();
@@ -63,7 +62,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', index);
-app.get('/pong', pong);
+app.get('/pong', function (req ,res){
+res.render('pong', { Estado: 'Activa' })})
 //app.get('/prueba', prueba);
 
 //ruta para ver usuarios
