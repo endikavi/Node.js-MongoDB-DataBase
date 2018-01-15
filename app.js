@@ -74,7 +74,7 @@ app.get('/user', function(req, res) {
         if (err) return console.error(err);
         let Data = JSON.stringify(Users);
         console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
-        res.send('{"users":[' + Data + ']}');
+        res.send('{"users":' + Data + '}');
         
 })
 })
@@ -94,7 +94,7 @@ app.post('/userarray', urlencodedParser ,function(req, res) {
     NewUser.save(function (err, NewUser) {
         if (err) return console.error(err);
     })})
-    
+
 	res.send('Añadido array de ' + req.body.length + ' usuarios');
     console.log('Añadido array de ' + req.body.length + ' usuarios');
     
@@ -103,33 +103,40 @@ app.post('/userarray', urlencodedParser ,function(req, res) {
 //ruta para añadir usuario
 app.post('/user', urlencodedParser, function(req, res) {
     
-    const NewUser = new User({ 
-        dni: req.body.dni,
+    const NewUser = new User();
+     /*   dni: req.body.dni,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email    
-    });
-    
+    });*/ 
+    Object.assign (NewUser,req.body);
+    /*
     NewUser.save(function (err, NewUser) {
         if (err) return console.error(err);
-    });
+    });*/
     
-	console.log('Usuario añadido:')
-    console.log(
-        "DNI: " + req.body.dni + 
-        " Nombre: " + req.body.first_name +
-		" Apellido: " + req.body.last_name +
-        " Email: " + req.body.email);
+        
+    NewUser.save()
+    .then(user => {
+     
+        console.log('Usuario añadido:')
+        console.log(
+            "DNI: " + req.body.dni + 
+            " Nombre: " + req.body.first_name +
+            " Apellido: " + req.body.last_name +
+            " Email: " + req.body.email);
     
-	res.send(
-        "Usuario añadido: " +
-        "<br>  DNI: " + req.body.dni + 
-        "<br>  Nombre: " + req.body.first_name +
-		"<br>  Apellido: " + req.body.last_name + 
-        "<br>  Email: " + req.body.email
-    );
+	   res.send(
+            "Usuario añadido: " +
+            "<br>  DNI: " + req.body.dni + 
+            "<br>  Nombre: " + req.body.first_name +
+		    "<br>  Apellido: " + req.body.last_name + 
+            "<br>  Email: " + req.body.email
+      );
+      })
     
-
+    .catch(error => {} )
+    
 })
 
 //ruta para eliminar usuario obteniendo dni del body
