@@ -15,7 +15,7 @@ const port = 8080;
 const app = express();
 
 // Modulos
-
+const User = require ('./moduloesquema');
 
 /*MONGODB*/
 const options = {
@@ -35,7 +35,7 @@ mongoose.connect(mongodbRoute, options, (err) => {
 	});
 	console.log(`Conexión correcta.`)
 });
-
+/*
 //esquema de usuario
 
 const userSchema = mongoose.Schema({
@@ -48,7 +48,7 @@ const userSchema = mongoose.Schema({
 //modelo de usuario
 
 const User = mongoose.model('User', userSchema);
-
+*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -61,10 +61,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use('/', index);
+
 app.get('/pong', function (req ,res){
-res.render('pong', { Estado: 'Activa' })})
-//app.get('/prueba', prueba);
+    console.log('Pedido el pong')
+    res.render('pong', { Estado: 'Activa' })})
+
 
 //ruta para ver usuarios
 app.get('/user', function(req, res) {
@@ -78,12 +79,25 @@ app.get('/user', function(req, res) {
 })
 })
 
-//ruta para resetear los usuarios
-app.get('/userreset', function(req, res) {
+//ruta para añadir una array con los usuarios
+app.post('/userarray', urlencodedParser ,function(req, res) {
     
-	console.log('Base de datos reiniciada');
+    req.body.map(element =>{
     
-	res.send('Base de datos reiniciada');
+        const NewUser = new User({ 
+        dni: element.dni,
+        first_name: element.first_name,
+        last_name: element.last_name,
+        email: element.email    
+    });
+    
+    NewUser.save(function (err, NewUser) {
+        if (err) return console.error(err);
+    })})
+    
+	res.send('Añadido array de ' + req.body.length + ' usuarios');
+    console.log('Añadido array de ' + req.body.length + ' usuarios');
+    
 })
 
 //ruta para añadir usuario
@@ -118,19 +132,33 @@ app.post('/user', urlencodedParser, function(req, res) {
 
 })
 
-//ruta para eliminar usuario
+//ruta para eliminar usuario obteniendo dni del body
+/*
 app.delete('/user', urlencodedParser, function(req, res) {
     
     User.remove({ dni: req.body.dni }, function (err) {
-    if (err) return handleError(err);
+        if (err) return handleError(err);
     });
     
 	console.log('Usuario eliminado: DNI ' + req.body.dni);
 	res.send('Usuario eliminado: DNI ' + req.body.dni);
+})*/
+
+//ruta alternativa recibir dni en la url
+app.delete('/user/:_id', function (req, res){
+    
+    User.remove({ _id: req.params._id }, function (err) {
+        if (err) return handleError(err);
+    });
+    
+	console.log('Usuario eliminado ID: ' + req.params._id);
+	res.send('Usuario eliminado ID: ' + req.params._id);    
+    
 })
 
-//ruta para actualizar usuario
-app.put('/user', function(req, res) {
+//ruta para actualizar usuario obteniendo del body el id
+/*
+app.put('/user', urlencodedParser, function(req, res) {
     
     const Update = ({ 
         dni: req.body.dni,
@@ -154,10 +182,36 @@ app.put('/user', function(req, res) {
         " Nombre: " + req.body.first_name +
 		" Apellido: " + req.body.last_name + 
         " Email: " + req.body.email);
-})
+})*/
 
+//ruta alternativa recibiendo el dni en la url
+app.put('/user/:_id', urlencodedParser , function(req, res) {
+    
+    const Update = ({ 
+        dni: req.body.dni,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email    
+    });
+    
+    User.update({ _id: req.params._id }, Update , function (err) {
+    if (err) return handleError(err);
+    });
+    
+	console.log(
+        'Usuario actualizado: DNI: ' + req.body.dni + 
+        " Nombre: " + req.body.first_name + 
+        " Apellido: " + req.body.last_name + 
+        " Email: " + req.body.email);
+    
+	res.send(
+        'Usuario actualizado: DNI: ' + req.body.dni + 
+        " Nombre: " + req.body.first_name +
+		" Apellido: " + req.body.last_name + 
+        " Email: " + req.body.email);
+})
 //ruta para modificar el email de un usuario
-app.post('/useremail', function(req, res) {
+app.path('/useremail/_id', function(req, res) {
     
 	console.log('email actualizado: ' + req.body.email);
     
