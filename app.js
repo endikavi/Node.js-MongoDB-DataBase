@@ -79,6 +79,19 @@ app.get('/user', function(req, res) {
 })
 })
 
+//ruta para busquedas
+app.post('/userfind', urlencodedParser, function(req, res) {
+    
+    User.find(req.body).lean().exec(function (err, Users) {
+        if (err) return console.error(err);
+        let Data = JSON.stringify(Users);
+        console.log(req.body)
+        console.log('Se busco en la lista de usuarios,resultados: ' + Users.length);
+        res.send('{"users":' + Data + '}');
+        
+})
+})
+
 //ruta para añadir una array con los usuarios
 app.post('/userarray', urlencodedParser ,function(req, res) {
     
@@ -126,13 +139,7 @@ app.post('/user', urlencodedParser, function(req, res) {
             " Apellido: " + req.body.last_name +
             " Email: " + req.body.email);
     
-	   res.send(
-            "Usuario añadido: " +
-            "<br>  DNI: " + req.body.dni + 
-            "<br>  Nombre: " + req.body.first_name +
-		    "<br>  Apellido: " + req.body.last_name + 
-            "<br>  Email: " + req.body.email
-      );
+	   res.send(user);
       })
     
     .catch(error => {} )
@@ -151,7 +158,7 @@ app.delete('/user', urlencodedParser, function(req, res) {
 	res.send('Usuario eliminado: DNI ' + req.body.dni);
 })*/
 
-//ruta alternativa recibir dni en la url
+//ruta alternativa recibir _id en la url
 app.delete('/user/:_id', function (req, res){
     
     User.remove({ _id: req.params._id }, function (err) {
@@ -163,7 +170,20 @@ app.delete('/user/:_id', function (req, res){
     
 })
 
-//ruta para actualizar usuario obteniendo del body el id
+//ruta para eliminar varios usuarios
+app.delete('/userdel', function (req, res){
+    
+    let Filtro = JSON.stringify(req.body);
+    console.log(Filtro);
+    console.log(res);
+    User.remove(Filtro , function (err) {
+        if (err) return handleError(err);
+    });
+    
+	res.send(res);    
+    
+})
+//ruta para actualizar usuario obteniendo del body el _id
 /*
 app.put('/user', urlencodedParser, function(req, res) {
     
@@ -191,7 +211,7 @@ app.put('/user', urlencodedParser, function(req, res) {
         " Email: " + req.body.email);
 })*/
 
-//ruta alternativa recibiendo el dni en la url
+//ruta alternativa recibiendo el _id en la url
 app.put('/user/:_id', urlencodedParser , function(req, res) {
     
     const Update = ({ 
