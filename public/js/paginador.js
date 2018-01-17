@@ -1,7 +1,3 @@
-exports.estado(){
-console.log('paginador activo')    
-};
-
 (function($){
 $.fn.easyPaginate = function (options) {
     var defaults = {
@@ -41,14 +37,17 @@ $.fn.easyPaginate = function (options) {
             
             if(plugin.settings.firstButton) {
                 htmlNav += '<a href="#'+plugin.settings.hashPage+':1" title="First page" rel="1" class="first">'+plugin.settings.firstButtonText+'</a>';
+                
             }
             
             if(plugin.settings.prevButton) {
                 htmlNav += '<a href="" title="Previous" rel="" class="prev">'+plugin.settings.prevButtonText+'</a>';
+               
             }
             
             for(i = 1;i <= plugin.settings.pages;i++) {
                 htmlNav += '<a href="#'+plugin.settings.hashPage+':'+i+'" title="Page '+i+'" rel="'+i+'" class="page">'+i+'</a>';
+               
             };
             
             if(plugin.settings.nextButton) {
@@ -62,8 +61,8 @@ $.fn.easyPaginate = function (options) {
             htmlNav += '</div>';
             plugin.nav = $(htmlNav);
             plugin.nav.css({
-                'width': plugin.el.width()
             });
+            
             plugin.el.after(plugin.nav);
 
             var elSelector = '#' + plugin.el.get(0).id + ' + ';
@@ -71,18 +70,21 @@ $.fn.easyPaginate = function (options) {
                 + elSelector + ' .easyPaginateNav a.first,'
                 + elSelector + ' .easyPaginateNav a.last').on('click', function(e) {
                 e.preventDefault();
+                localStorage.setItem ("Page",$(this).attr('rel'));
                 displayPage($(this).attr('rel'));                
             });
 
             $(elSelector + ' .easyPaginateNav a.prev').on('click', function(e) {
                 e.preventDefault();
                 page = plugin.settings.currentPage > 1?parseInt(plugin.settings.currentPage) - 1:1;
+                localStorage.setItem ("Page",page);
                 displayPage(page);
             });
 
             $(elSelector + ' .easyPaginateNav a.next').on('click', function(e) {
                 e.preventDefault();
                 page = plugin.settings.currentPage < plugin.settings.pages?parseInt(plugin.settings.currentPage) + 1:plugin.settings.pages;
+                localStorage.setItem ("Page",page);
                 displayPage(page);
             });
         };
@@ -193,6 +195,7 @@ $.fn.easyPaginate = function (options) {
     
             // Here we go
             displayNav();
+              
             
             page = 1;
             if(document.location.hash.indexOf('#'+plugin.settings.hashPage+':') != -1) {
@@ -202,7 +205,7 @@ $.fn.easyPaginate = function (options) {
                 }
             }
             
-            displayPage(page, 'default');
+            displayPage(localStorage.getItem("Page")); 
         }
     });
 };

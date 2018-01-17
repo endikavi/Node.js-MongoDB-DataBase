@@ -1,56 +1,70 @@
 <!DOCTYPE html>
-<html lang="es" xml:lang="es">
+<html>
 <head>
-<!-- metadatos -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="copyright" content="Endika Vicioso"/>
-<meta name="fecha" content="2017/11/13">
-<meta name="author" content="Endika Vicioso"/>
-<meta name="generator" content="Brackets"/>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="robots" content="index.html"/>
-<meta name="keywords" content="admins,ajax"/>
-<meta name="description" content="Pagina para pruebas de Endika Vicioso"/>
-<meta name="Indice" content="Pagina pricipal">
-<title>Administradores</title>
-<!-- scripts y estilos -->
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+
+  <!-- Material Design Theming -->
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <link rel="stylesheet" href="">
 <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-<script src="js/firebase.js">
-  // Initialize Firebase
-  
-</script>    
- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
-<script src="js/paginador.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/login.js"></script>
 
- <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-    
-<link rel="stylesheet" href="css/estilo.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 </head>
-    
-    
-<!-- contenido -->
-<body><div class="centrado">
+<body>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-<div class="div-ini"><input type="button" class="btn-ini" id="btn-inicio" onclick="llamadaInicial()" value="Recuperar Datos"/></div>
-<div id="btn-modos"></div>
-    <div class="contenido" id="contenido"></div><div class="" id="formulario"></div></div>
+  <!-- Header section containing title -->
+  <header class="mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+      <h3>Bienvenido al login</h3>
+      </div>
+    </div>
+  </header>
+
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+
+      <!-- Container for the demo -->
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+          <h2 class="mdl-card__title-text">Conectate via email o con tu cuenta de Google</h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+          <p>Pon tu Email y contraseña o pulsa en Conectarte con google</p>
+         
+
+          <input class="mdl-textfield__input" style="display:inline;width:auto;" type="text" id="email" name="email" placeholder="Email"/>
+          &nbsp;&nbsp;&nbsp;
+          <input class="mdl-textfield__input" style="display:inline;width:auto;" type="password" id="password" name="password" placeholder="Password"/>
+          <br/><br/>
+          &nbsp;&nbsp;&nbsp;
+           <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in">Iniciar sesion</button>
+            <button disbled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in-google" >Google</button>
+          <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-up" name="signup">Registrarse</button>
+          &nbsp;&nbsp;&nbsp;
+          <button class="mdl-button mdl-js-button mdl-button--raised" disabled id="quickstart-verify-email" name="verify-email">Enviar email de verificacion</button>
+          &nbsp;&nbsp;&nbsp;
+          <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-password-reset" name="verify-email">Resetear contraseña por email.</button>
+          <a href="https://base-de-imagenes.firebaseapp.com/panel.html">link text</a>
+
+          <!-- Container where we'll display the user details -->
+          <div class="quickstart-user-details-container">
+            Firebase sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+            <div>Firebase auth <code>currentUser</code> object value:</div>
+            <pre><code id="quickstart-account-details">null</code></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
 </body>
 </html>
-    
-    
-    

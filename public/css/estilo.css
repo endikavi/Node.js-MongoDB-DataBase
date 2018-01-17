@@ -4,7 +4,7 @@ body {
 
 }
 
-.caja  {
+.Box  {
  position: relative; 
  border-style: solid;
  border-width: 1px;
@@ -19,7 +19,7 @@ body {
   padding-bottom: 50px;  
     
 }
-.tabla  {
+.table  {
  position: relative; 
  border-style: solid;
  border-width: 1px;  
@@ -42,12 +42,12 @@ p {
     padding-left: 20px;
     font-weight:bold;
 }
-.cajatotal {
-    padding-top:10px;
-     padding-bottom:20px;
-    margin: auto;
- height: 10px;   
- width: 200px;   
+.boxtotal {
+ padding-top:10px;
+ padding-bottom:0px;
+ margin: auto;
+ height: 30px;   
+ width: 190px;   
     
 }
 .avatar {
@@ -57,18 +57,18 @@ height: 50px;
 top:0px;
 left:0px;    
 }
-.vacio {
+.Blank {
 display: block;
 width: 100px;
 height: 50px;   
 }
-.vaciotabla{
+.Blanktable{
 display: block;
 width: 100px;
 height: 0px;    
     
 }
-.avatartabla {
+.avatartable {
 position: absolute;    
 width: 50px;
 height: 50px;
@@ -152,11 +152,10 @@ position: absolute;
   to {transform: scale(0);}
 }
 
-#easyPaginate {}
-#easyPaginate img {margin-bottom:10px;}
 .easyPaginateNav{
     position:absolute;
-    display: block;
+    
+    width: 99%;
     top: 33px;
    color:black;
    
@@ -204,4 +203,20 @@ label {
     
   margin-left: 250px;
   
+}
+
+.subida {
+    
+  margin: auto;  
+    
+}
+
+.avatarform {
+   position: absolute; 
+width: 160px;
+height: 160px; 
+right: 30px;   
+border-radius: 50%;
+border: 2px solid #ccc;   
+    
 }

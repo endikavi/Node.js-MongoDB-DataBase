@@ -1,11 +1,14 @@
 //llamada inicial                ***************************************************************************
 function llamadaInicial() {
+  if  (localStorage.getItem("Sesion") == "true"  ){
+    localStorage.setItem ("Page",1);  
     addSpinner($('body'));
     delBtnIni();
     btnModos();
-    printCajaTotal();
-    tabla = false;
+    printBoxTotal();
+    table = false;
     llamada(true, "GET", "https://lanbide-node.herokuapp.com/admins", "JSON");
+  }else{alert('Sesion no iniciada')}
 };
 //llamada ajax al servidor       ***************************************************************************
 function llamada(data, type, url, dataType) {
@@ -76,13 +79,13 @@ function llamada(data, type, url, dataType) {
 function Actualizar() {
     llamada(true, "GET", "https://lanbide-node.herokuapp.com/admins", "JSON");
 }
-//pinta los administradores en cajas                    **************************************************************************
-function printAdminsCajas() {
-    delContenido();
+//pinta los administradores en Boxs                    **************************************************************************
+function printAdminsBox() {
+    delContent();
     for (var i = 0; i < obj.admins.length; i++) {
         admins = obj.admins[i];
-        printCaja(i);
-        printVacio(admins, i);
+        printBox(i);
+        printBlank(admins, i);
         printAvatars(admins, i);
         btnEdit(admins, i);
         printNames(admins, i);
@@ -92,35 +95,35 @@ function printAdminsCajas() {
         printState(admins, i);
     }
     delNav();
-    tabla = false;
+    table = false;
     paginador();
 };
-//pinta los administradores en tablas              *************************************************************************
-function printAdminsTablas() {
-    delContenido();
+//pinta los administradores en tables              *************************************************************************
+function printAdminsTables() {
+    delContent();
     for (var i = 0; i < obj.admins.length; i++) {
         admins = obj.admins[i];
-        printTabla(i);
-        printVacioTabla(admins, i);
+        printTable(i);
+        printBlankTable(admins, i);
         printAvatars(admins, i);
         printNames(admins, i);
         printIds(admins, i);
-        printVacioTabla(admins, i);
+        printBlankTable(admins, i);
         printUserNames(admins, i);
         printEmails(admins, i);
         btnEdit(admins, i);
         printState(admins, i);
     }
     delNav();
-    tabla = true;
-    paginadorTabla();
+    table = true;
+    paginadorTable();
 };
 //botones de modo                    ***************************************************************************
 function btnModos() {
-    var botonCaja = '<input type="button" class="btn-modo" onclick="printAdminsCajas()" value="Ver en cajas" id="btn-cajas" name="btn-cajas"/>';
-    $('#btn-modos').append(botonCaja);
-    var botonTabla = '<input type="button" class="btn-modo" onclick="printAdminsTablas()" value="Ver en tabla" id="btn-tablas" name="btn-tablas"/>';
-    $('#btn-modos').append(botonTabla);
+    var botonBox = '<input type="button" class="btn-modo" onclick="printAdminsBox();localStorage.setItem("Page",1);" value="Ver en cajas" id="btn-Boxs" name="btn-Boxs"/>';
+    $('#btn-modos').append(botonBox);
+    var botonTable = '<input type="button" class="btn-modo" onclick="printAdminsTables()localStorage.setItem("Page",1);" value="Ver en tabla" id="btn-tables" name="btn-tables"/>';
+    $('#btn-modos').append(botonTable);
     var botonNewAdmin = '<input type="button" class="btn-modo" onclick="printFormNew();" value="Nuevo admin" id="btn-newadmin" name="btn-newadmin"/>';
     $('#btn-modos').append(botonNewAdmin);
     var botonActualizar = '<input type="button" class="btn-modo" onclick="Actualizar();" value="Actualizar" id="btn-Actualizar" name="btn-Actualizar"/>';
@@ -134,9 +137,9 @@ function btnEdit(admins, i) {
     $("<span/>", {
         id: "box-del" + i,
     }).appendTo("#box_" + i).addClass("boxdel");
-    var botonEdit = '<input type="button" class="btnedit" onclick="formEdit(' + i + ')" value="Edit" id="edit" name="btn-cajas"/>';
+    var botonEdit = '<input type="button" class="btnedit" onclick="formEdit(' + i + ')" value="Edit" id="edit" name="btn-Boxs"/>';
     $('#box-edit' + i).append(botonEdit);
-    var botonDel = '<input type="button" class="btndel" onclick="btnDel(' + i + ')" value="del" id="del" name="btn-tablas"/>';
+    var botonDel = '<input type="button" class="btndel" onclick="btnDel(' + i + ')" value="del" id="del" name="btn-tables"/>';
     $('#box-del' + i).append(botonDel);
 }
 //borrar boton inicial                 *************************************************************************
@@ -144,7 +147,7 @@ function delBtnIni() {
     $(".div-ini").empty();
 };
 //borrar contenido                      *************************************************************************
-function delContenido() {
+function delContent() {
     $(".contenido").empty();
 };
 //borrar barra de navegacion             ************************************************************************
@@ -152,18 +155,18 @@ function delNav() {
     $("#navbar").empty();
 };
 //funciones de pintado                  ***************************************************************************
-//pintar cajas                    
-function printCaja(i) {
+//pintar Boxs                    
+function printBox(i) {
     $("<div/>", {
         id: "box_" + i,
-        class: "caja"
+        class: "Box"
     }).appendTo("#contenido");
 };
-//pintar tablas                            ***************************************************************************
-function printTabla(i) {
+//pintar tables                            ***************************************************************************
+function printTable(i) {
     $("<div/>", {
         id: "box_" + i,
-        class: "tabla"
+        class: "table"
     }).appendTo("#contenido");
 };
 //pintar y filtrar informacion                     *************************************************************************
@@ -177,10 +180,10 @@ function printTotal() {
     }).appendTo("#box_total");
 };
 
-function printCajaTotal() {
+function printBoxTotal() {
     $("<div/>", {
         id: "box_total",
-        class: "cajatotal"
+        class: "boxtotal"
     }).appendTo("#btn-modos");
 };
 //pintar y filtrar avatares                 *************************************************************************
@@ -202,13 +205,13 @@ function printAvatar(admins, i) {
 
 function printAvatarDefault(admins, i) {
     $("<img/>", {
-        src: admins.avatar + "user.png"
+        src: "img/" + admins.avatar + "user.png"
     }).appendTo("#box_" + i).addClass("avatar");
 }
 
 function printAvatarDefaultu(admins, i) {
     $("<img/>", {
-        src: "undefineduser.png"
+        src: "img/undefineduser.png"
     }).appendTo("#box_" + i).addClass("avatar");
 }
 //pintar y filtrar emails                   ******************************************************************************
@@ -326,24 +329,24 @@ function printNameDefaultu(admins, i) {
 //pintar y filtrar estado                     ***************************************************************************
 function printState(admins, i) {
     $("<img/>", {
-        src: admins.active + ".png"
+        src: "img/" + admins.active + ".png"
     }).appendTo("#box_" + i).addClass("estado");
 };
-//funcion pintar caja vacia                  ***************************************************************************
-function printVacio(admins, i) {
+//funcion pintar Box vacia                  ***************************************************************************
+function printBlank(admins, i) {
     $("<span/>", {
-        id: "vacio",
-        class: "vacio",
+        id: "Blank",
+        class: "Blank",
         text: ""
-    }).appendTo("#box_" + i).addClass("vacio");
+    }).appendTo("#box_" + i).addClass("Blank");
 };
-//funcion pintar caja vacia tabla              *****************************************************************************
-function printVacioTabla(admins, i) {
+//funcion pintar Box vacia table              *****************************************************************************
+function printBlankTable(admins, i) {
     $("<span/>", {
-        id: "vacio",
-        class: "vacio",
+        id: "Blank",
+        class: "Blank",
         text: ""
-    }).appendTo("#box_" + i).addClass("vaciotabla");
+    }).appendTo("#box_" + i).addClass("Blanktable");
 };
 //funcion añadir espinner                    ***************************************************************************
 function addSpinner(el, static_pos) {
@@ -364,16 +367,7 @@ function animateSpinner(el, animation, complete) {
         complete && complete();
     }, parseFloat(el.css('animation-duration')) * 1000));
 }
-$('.demo1').bootpag({
-    total: 5
-}).on("page", function (event, num) {
-    $(".content").html("Page " + num); // or some ajax content loading...
-    // ... after content load -> change total to 10
-    $(this).bootpag({
-        total: 10,
-        maxVisible: 10
-    });
-});
+
 //funcion que quita el spinner                  **************************************************************
 function removeSpinner(el, complete) {
     var spinner = el.children('.spinner');
@@ -383,14 +377,14 @@ function removeSpinner(el, complete) {
 function paginador() {
     $('#contenido').easyPaginate({
         paginateElement: 'div',
-        elementsPerPage: 24,
+        elementsPerPage: 20,
     });
 };
 
-function paginadorTabla() {
+function paginadorTable() {
     $('#contenido').easyPaginate({
         paginateElement: 'div',
-        elementsPerPage: 22,
+        elementsPerPage: 32,
     });
 };
 //boton-confirmar                            ****************************************************************************
@@ -422,10 +416,10 @@ function delAdmin(N) {
 };
 //funcion elegir pintado                          ************************************************************************
 function printAdmins() {
-    if (tabla == true) {
-        printAdminsTablas();
+    if (table == true) {
+        printAdminsTables();
     } else {
-        printAdminsCajas();
+        printAdminsBox();
     }
 }
 //funcion pintar formulario nuevo admin            ************************************************************************
@@ -445,7 +439,7 @@ function printNewForm() {
         class: "editform"
     }).appendTo("#back_form");
 };
-//caja                                           ****************************************************************************
+//Box                                           ****************************************************************************
 function printBackForm() {
     $("<div/>", {
         id: "back_form",
@@ -474,8 +468,9 @@ function formEdit(a) {
 }
 
 function printFormularioNew() {
-    var form = '<label for="Nombre">Nombre:</label><input type="text" id="Nombre" name="Nombre" placeholder=" Nombre..." maxlength="10" autofocus required ><br><br><label for="Email">Correo:</label><input type="email" id="Email" name="Email" placeholder="Email..." required><br><br><label for="Usuario">Usuario:</label><input type="text" id="Usuario" name="Usuario" placeholder=" Usuario..." maxlength="10" required ><br><br><label for="Id">ID:</label><input type="text" id="ID" name="ID" placeholder=" ID..." maxlength="30"  required ><br><br><label for="Estado">Estado:</label><input type="checkbox" name="Estado" id="Estado" value="true">Activo<br><br><br><label for="Avatar">Avatar:</label><input type="url" id="Avatar" name="Avatar" placeholder=" Url del avatar..." required ><br><br><button type="button" class="enviar" onclick="createNewAdmin()">Enviar</button>'
+    var form = '<label onload="subida()" for="Nombre">Nombre:</label><input type="text" id="Nombre" name="Nombre" placeholder=" Nombre..." maxlength="10" autofocus required ><span id="linkAvatar"><img class="avatarform" src="img/undefineduser.png"></img></span><br><br><label for="Email">Correo:</label><input type="email" id="Email" name="Email" placeholder="Email..." required><br><br><label for="Usuario">Usuario:</label><input type="text" id="Usuario" name="Usuario" placeholder=" Usuario..." maxlength="10" required ><br><br><label for="Id">ID:</label><input type="text" id="ID" name="ID" placeholder=" ID..." maxlength="30"  required ><br><br><label for="Estado">Estado:</label><input type="checkbox" name="Estado" id="Estado" value="true">Activo<br><br><label for="Avatar">Avatar:</label><input type="file" id="file" name="file" class="subida"/><br><br><br><button type="button" class="enviar" onclick="createNewAdmin()">Enviar</button>'
     $('.editform').append(form);
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
 }
 
 function createNewAdmin() {
@@ -488,14 +483,15 @@ function createNewAdmin() {
     } else {
         Estado = false
     }
-    Avatar = document.getElementById("Avatar").value;
+    Avatar = localStorage.getItem("Avatar");
     newAdmin = {_id: Newid,name: Nombre,username: Usuario,email: Email,avatar: Avatar,active: Estado};
-    llamada(newAdmin, "POST", "https://lanbide-node.herokuapp.com/admins", "JSON")
+    llamada(newAdmin, "POST", "https://lanbide-node.herokuapp.com/admins", "JSON");
 }
 
 function printFormularioEdit(a) {
-    var form = '<label for="Nombre">Nombre:</label><input type="text" id="Nombre" name="Nombre" placeholder="' + obj.admins[a].name + '" value="' + obj.admins[a].name + '" maxlength="10" autofocus required ><br><br><label for="Email">Correo:</label><input type="email" id="Email" name="Email" placeholder="' + obj.admins[a].email + '" value="' + obj.admins[a].email + '" required><br><br><label for="Usuario">Usuario:</label><input type="text" id="Usuario" name="Usuario" placeholder="' + obj.admins[a].username + '" value="' + obj.admins[a].username + '" maxlength="10" required ><br><br><label for="Id">ID:</label><input type="text" id="ID" name="ID" placeholder="' + obj.admins[a]._id + '" maxlength="30"  disabled ><br><br><label for="Estado">Estado:</label><input type="checkbox" name="Estado" id="Estado" value="true">Activo<br><br><br><label for="Avatar">Avatar:</label><input type="url" id="Avatar" name="Avatar" placeholder="' + obj.admins[a].avatar + '" value="' + obj.admins[a].avatar + '" required ><br><br><button type="button" class="enviar" onclick="editarAdmin(' + a + ')">Enviar</button>'
+    var form = '<label for="Nombre">Nombre:</label><input type="text" id="Nombre" name="Nombre" placeholder="' + obj.admins[a].name + '" value="' + obj.admins[a].name + '" maxlength="10" autofocus required ><span id="linkAvatar"><img class="avatarform" src="' + obj.admins[a].avatar + '" alt="Avatar"></img></span><br><br><label for="Email">Correo:</label><input type="email" id="Email" name="Email" placeholder="' + obj.admins[a].email + '" value="' + obj.admins[a].email + '" required><br><br><label for="Usuario">Usuario:</label><input type="text" id="Usuario" name="Usuario" placeholder="' + obj.admins[a].username + '" value="' + obj.admins[a].username + '" maxlength="10" required ><br><br><label for="Id">ID:</label><input type="text" id="ID" name="ID" placeholder="' + obj.admins[a]._id + '" maxlength="30"  disabled ><br><label for="Estado">Estado:</label><input type="checkbox" name="Estado" id="Estado" value="true">Activo<br><br><br><label for="Avatar">Avatar:</label><input type="file" id="file" name="file" class="subida"/><br><br><br><button type="button" class="enviar" onclick="editarAdmin(' + a + ')">Enviar</button>'
     $('.editform').append(form);
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
 }
 
 function editarAdmin(N) {
@@ -510,7 +506,7 @@ function editarAdmin(N) {
     } else {
         Estado = false
     }
-    Avatar = document.getElementById("Avatar").value;
+    Avatar = localStorage.getItem("Avatar");
     editAdmin = {_id: id,name: Nombre,username: Usuario,email: Email,avatar: Avatar,active: Estado};
    llamada(editAdmin, "PUT", "https://lanbide-node.herokuapp.com/admins/" + id, "JSON")
   
