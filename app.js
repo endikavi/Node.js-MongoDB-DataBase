@@ -81,7 +81,7 @@ app.post('/userfind', urlencodedParser, function(req, res) {
         if (err) return console.error(err);
         console.log(req.body)
         console.log('Se busco en la lista de usuarios,resultados: ' + Users.length);
-        res.send('{"users":' + JSON.stringify(Users) + '}');        
+        res.send('{"admins":' + JSON.stringify(Users) + '}');        
 })
 })
 
