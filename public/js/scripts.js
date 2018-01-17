@@ -13,7 +13,7 @@ function llamadaInicial() {
     btnModos();
     printBoxTotal();
     table = false;
-    llamada(true, "GET", "https://prueba-base-de-datos-endika.herokuapp.com/user", "JSON");
+    llamada(true, "GET", "https://prueba-base-de-datos-endika.herokuapp.com/user", "TEXT");
   }else{alert('Sesion no iniciada')}
 };
 //llamada ajax al servidor       ***************************************************************************
