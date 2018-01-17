@@ -28,7 +28,7 @@ function llamada(data, type, url, dataType) {
             console.log("La solicitud se ha completado correctamente.");
         
             if (type == "GET") {
-                obj = JSON.parse(JSON.stringify(data));
+                obj = JSON.parse(JSON.stringify(user));
           
             } else if (type == "DELETE") {
                 console.log("Administrador borrado")

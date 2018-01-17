@@ -87,18 +87,19 @@ app.post('/userfind', urlencodedParser, function(req, res) {
 
 // route to add users //
 
-app.post('/user', urlencodedParser, function(req, res) {
-    if(req.body.isArray){
+app.post('/usermany', urlencodedParser, function(req, res) {
+  
 		req.body.map(element =>{
     	const NewUser = new User();
     	Object.assign (NewUser,element);
     	NewUser.save()
-			.then(user => {})
-			.catch(error => {} )
-		})
-		res.send('Añadidos ' + req.body.length + ' usuarios');
-        console.log('Añadidos ' + req.body.length + ' usuarios');	
-	}else{
+        .then(user => {
+				res.send(user);
+        		console.log('Añadidos usuarios');
+			})
+        .catch(error => {} )
+;})})
+app.post('/user', urlencodedParser, function(req, res) {
     	const NewUser = new User();
     	Object.assign (NewUser,req.body);
     	NewUser.save()
@@ -109,7 +110,7 @@ app.post('/user', urlencodedParser, function(req, res) {
 			})
     		.catch(error => {} )
     
-}})
+})
 
 // route to delete users by id in the url //
 
