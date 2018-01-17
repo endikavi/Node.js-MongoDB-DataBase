@@ -58,6 +58,12 @@ app.get('/pong', function (req ,res){
     console.log('Pedido el pong')
     res.render('pong')})
 
+// route for client //
+
+app.get('/', function (req ,res){
+    console.log('Pedido el cliente')
+    res.render('panel')})
+
 // route to obtain all users //
 
 app.get('/user', function(req, res) {
