@@ -70,7 +70,7 @@ app.get('/user', function(req, res) {
     User.find().lean().exec(function (err, Users) {
         if (err) return console.error(err);
         console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
-        res.send('{"users":' + JSON.stringify(Users) + '}');        
+        res.send('{"admins":' + JSON.stringify(Users) + '}');        
 })
 })
 
