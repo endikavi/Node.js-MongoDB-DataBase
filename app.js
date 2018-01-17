@@ -35,20 +35,7 @@ mongoose.connect(mongodbRoute, options, (err) => {
 	});
 	console.log(`Conexión correcta.`)
 });
-/*
-//esquema de usuario
 
-const userSchema = mongoose.Schema({
-    dni: String,
-    first_name: String,
-    last_name: String,
-    email: String    
-});
-
-//modelo de usuario
-
-const User = mongoose.model('User', userSchema);
-*/
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -97,12 +84,9 @@ app.post('/userarray', urlencodedParser ,function(req, res) {
     
     req.body.map(element =>{
     
-        const NewUser = new User({ 
-        dni: element.dni,
-        first_name: element.first_name,
-        last_name: element.last_name,
-        email: element.email    
-    });
+    const NewUser = new User();
+ 
+    Object.assign (NewUser,element);
     
     NewUser.save(function (err, NewUser) {
         if (err) return console.error(err);
@@ -117,46 +101,20 @@ app.post('/userarray', urlencodedParser ,function(req, res) {
 app.post('/user', urlencodedParser, function(req, res) {
     
     const NewUser = new User();
-     /*   dni: req.body.dni,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email    
-    });*/ 
+ 
     Object.assign (NewUser,req.body);
-    /*
-    NewUser.save(function (err, NewUser) {
-        if (err) return console.error(err);
-    });*/
     
-        
     NewUser.save()
+	
     .then(user => {
-     
-        console.log('Usuario añadido:')
-        console.log(
-            "DNI: " + req.body.dni + 
-            " Nombre: " + req.body.first_name +
-            " Apellido: " + req.body.last_name +
-            " Email: " + req.body.email);
-    
+       console.log('Usuario añadido:')
+       console.log(user)
 	   res.send(user);
-      })
+    })
     
     .catch(error => {} )
     
 })
-
-//ruta para eliminar usuario obteniendo dni del body
-/*
-app.delete('/user', urlencodedParser, function(req, res) {
-    
-    User.remove({ dni: req.body.dni }, function (err) {
-        if (err) return handleError(err);
-    });
-    
-	console.log('Usuario eliminado: DNI ' + req.body.dni);
-	res.send('Usuario eliminado: DNI ' + req.body.dni);
-})*/
 
 //ruta alternativa recibir _id en la url
 app.delete('/user/:_id', function (req, res){
@@ -183,33 +141,6 @@ app.delete('/userdel', function (req, res){
 	res.send(res);    
     
 })
-//ruta para actualizar usuario obteniendo del body el _id
-/*
-app.put('/user', urlencodedParser, function(req, res) {
-    
-    const Update = ({ 
-        dni: req.body.dni,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email    
-    });
-    
-    User.update({ _id: req.body._id }, Update , function (err) {
-    if (err) return handleError(err);
-    });
-    
-	console.log(
-        'Usuario actualizado: DNI: ' + req.body.dni + 
-        " Nombre: " + req.body.first_name + 
-        " Apellido: " + req.body.last_name + 
-        " Email: " + req.body.email);
-    
-	res.send(
-        'Usuario actualizado: DNI: ' + req.body.dni + 
-        " Nombre: " + req.body.first_name +
-		" Apellido: " + req.body.last_name + 
-        " Email: " + req.body.email);
-})*/
 
 //ruta alternativa recibiendo el _id en la url
 app.put('/user/:_id', urlencodedParser , function(req, res) {
