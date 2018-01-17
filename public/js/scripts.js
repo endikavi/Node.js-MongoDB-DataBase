@@ -1,3 +1,9 @@
+// onload //
+window.onload = function (){
+    
+    localStorage.setItem ("Sesion","true")   
+    
+}
 //llamada inicial                ***************************************************************************
 function llamadaInicial() {
   if  (localStorage.getItem("Sesion") == "true"  ){
