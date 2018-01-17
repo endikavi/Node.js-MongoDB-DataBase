@@ -13,7 +13,7 @@ function llamadaInicial() {
     btnModos();
     printBoxTotal();
     table = false;
-    llamada(true, "GET", "https://prueba-base-de-datos-endika.herokuapp.com/user", "TEXT");
+    llamada(true, "GET", "https://prueba-base-de-datos-endika.herokuapp.com/user", "JSON");
   }else{alert('Sesion no iniciada')}
 };
 //llamada ajax al servidor       ***************************************************************************
@@ -28,7 +28,7 @@ function llamada(data, type, url, dataType) {
             console.log("La solicitud se ha completado correctamente.");
         
             if (type == "GET") {
-                obj = JSON.parse(JSON.stringify(user));
+                obj = JSON.parse(JSON.stringify(data));
           
             } else if (type == "DELETE") {
                 console.log("Administrador borrado")
