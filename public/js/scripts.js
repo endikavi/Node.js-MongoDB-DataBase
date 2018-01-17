@@ -13,7 +13,7 @@ function llamadaInicial() {
     btnModos();
     printBoxTotal();
     table = false;
-    llamada(true, "GET", "https://lanbide-node.herokuapp.com/admins", "JSON");
+    llamada(true, "GET", "https://prueba-base-de-datos-endika.herokuapp.com/user", "JSON");
   }else{alert('Sesion no iniciada')}
 };
 //llamada ajax al servidor       ***************************************************************************
