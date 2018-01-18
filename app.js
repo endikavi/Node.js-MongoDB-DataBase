@@ -71,7 +71,7 @@ app.get('/user', function(req, res) {
         if (err) return console.error(err);
         console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
         res.send('{"users":' + JSON.stringify(Users) + '}');        
-})}
+})})
     
 // find by id    
 app.get('/user/:_id', function(req, res) {
