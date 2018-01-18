@@ -29,7 +29,7 @@ function llamada(data, type, url, dataType) {
         
             if (type == "GET") {
                 obj = JSON.parse(JSON.stringify(data));
-          
+                Object.assign (obj.admins,obj.users);
             } else if (type == "DELETE") {
                 console.log("Administrador borrado")
                 obj.admins.splice(TempAdmin, 1);

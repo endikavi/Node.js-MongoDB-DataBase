@@ -70,8 +70,17 @@ app.get('/user', function(req, res) {
     User.find().lean().exec(function (err, Users) {
         if (err) return console.error(err);
         console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
-        res.send('{"admins":' + JSON.stringify(Users) + '}');        
+        res.send('{"users":' + JSON.stringify(Users) + '}');        
 })
+    
+// find by id    
+app.get('/user/:_id', function(req, res) {
+    
+    User.find({ _id: req.params._id }).lean().exec(function (err, Users) {
+        if (err) return console.error(err);
+        console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
+        res.send('{"users":' + JSON.stringify(Users) + '}');        
+})   
 })
 
 // route for searchs //
@@ -81,10 +90,21 @@ app.post('/userfind', urlencodedParser, function(req, res) {
         if (err) return console.error(err);
         console.log(req.body)
         console.log('Se busco en la lista de usuarios,resultados: ' + Users.length);
-        res.send('{"admins":' + JSON.stringify(Users) + '}');        
+        res.send('{"users":' + JSON.stringify(Users) + '}');        
 })
 })
 
+// route for specific //
+
+app.get('/userfindactive', urlencodedParser, function(req, res) {    
+    User.find({active : true}).lean().exec(function (err, Users) {
+        if (err) return console.error(err);
+        console.log(req.body)
+        console.log('Se busco en la lista de usuarios los activos,resultados: ' + Users.length);
+        res.send('{"users":' + JSON.stringify(Users) + '}');        
+})
+})    
+    
 // route to add users //
 
 app.post('/usermany', urlencodedParser, function(req, res) {
