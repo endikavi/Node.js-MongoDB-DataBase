@@ -87,6 +87,7 @@ function Actualizar() {
 }
 //pinta los administradores en Boxs                    **************************************************************************
 function printAdminsBox() {
+    localStorage.setItem("Page",1);
     delContent();
     for (var i = 0; i < obj.admins.length; i++) {
         admins = obj.admins[i];
@@ -106,6 +107,7 @@ function printAdminsBox() {
 };
 //pinta los administradores en tables              *************************************************************************
 function printAdminsTables() {
+    localStorage.setItem("Page",1);
     delContent();
     for (var i = 0; i < obj.admins.length; i++) {
         admins = obj.admins[i];
@@ -126,9 +128,9 @@ function printAdminsTables() {
 };
 //botones de modo                    ***************************************************************************
 function btnModos() {
-    var botonBox = '<input type="button" class="btn-modo" onclick="printAdminsBox();localStorage.setItem("Page",1);" value="Ver en cajas" id="btn-Boxs" name="btn-Boxs"/>';
+    var botonBox = '<input type="button" class="btn-modo" onclick="printAdminsBox();" value="Ver en cajas" id="btn-Boxs" name="btn-Boxs"/>';
     $('#btn-modos').append(botonBox);
-    var botonTable = '<input type="button" class="btn-modo" onclick="printAdminsTables();localStorage.setItem("Page",1);" value="Ver en tabla" id="btn-tables" name="btn-tables"/>';
+    var botonTable = '<input type="button" class="btn-modo" onclick="printAdminsTables();" value="Ver en tabla" id="btn-tables" name="btn-tables"/>';
     $('#btn-modos').append(botonTable);
     var botonNewAdmin = '<input type="button" class="btn-modo" onclick="printFormNew();" value="Nuevo admin" id="btn-newadmin" name="btn-newadmin"/>';
     $('#btn-modos').append(botonNewAdmin);
