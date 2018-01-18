@@ -71,7 +71,7 @@ app.get('/user', function(req, res) {
         if (err) return console.error(err);
         console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
         res.send('{"users":' + JSON.stringify(Users) + '}');        
-})
+})}
     
 // find by id    
 app.get('/user/:_id', function(req, res) {
@@ -119,6 +119,7 @@ app.post('/usermany', urlencodedParser, function(req, res) {
 			})
         .catch(error => {} )
 ;})})
+    
 app.post('/user', urlencodedParser, function(req, res) {
     	const NewUser = new User();
     	Object.assign (NewUser,req.body);
