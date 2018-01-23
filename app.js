@@ -62,7 +62,7 @@ router.post('/user', validator, function (req, res, next) {
     
   validatereq(req.body);
     
-}, function (req, res) {
+}, function (req, res, next) {
     
   console.log('Segunda etapa');
     
