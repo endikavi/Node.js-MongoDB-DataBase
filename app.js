@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // middleware para validacion //
 
-router.post('/user', function (req, res, next) {
+app.post('/user' ,function (req, res, next) {
 
   console.log('Primera etapa');
     
