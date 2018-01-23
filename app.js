@@ -61,6 +61,15 @@ app.post('/user', urlencodedParser, function (req, res, next) {
     
 }, function (req, res, next) {
   console.log('Segunda etapa');
+    const NewUser = new User();
+    	Object.assign (NewUser,req.body);
+    	NewUser.save()
+    		.then(user => {
+				res.send(user);
+        		console.log('Añadido usuario:');
+				console.log(user);
+			})
+    		.catch(error => {} )
 });
 
 // route for pong //
