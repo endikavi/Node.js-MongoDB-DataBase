@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const validator = require('validator');
-
+const router = express.Router();
 
 // Modules //
 
@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // middleware para validacion //
 
-app.post('/user', validator, function (req, res, next) {
+router.post('/user', validator, function (req, res, next) {
 
   console.log('Primera etapa');
     
