@@ -56,9 +56,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/user', urlencodedParser, function (req, res, next) {
 
-  console.log('Request Type:', req.method);
+  console.log('Primera etapa');
   next();
     
+}, function (req, res, next) {
+  console.log('Segunda etapa');
 });
 
 // route for pong //
