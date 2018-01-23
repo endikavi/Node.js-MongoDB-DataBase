@@ -52,6 +52,13 @@ app.use(urlencodedParser);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// middleware //
+
+app.use('/user/:id', function (req, res, next) {
+  console.log('Request Type:', req.method);
+  next();
+});
+
 // route for pong //
 
 app.get('/pong', function (req ,res){
