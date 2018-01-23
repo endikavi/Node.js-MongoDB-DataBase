@@ -6,7 +6,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const validator = require('validator');
+
 
 // Modules //
 
@@ -54,13 +56,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // middleware para validacion //
 
-app.post('/user', urlencodedParser, function (req, res, next) {
+app.post('/user',urlencodedParser , validator, function (req, res, next) {
 
   console.log('Primera etapa');
-  next();
     
-}, function (req, res, next) {
+  validatereq(req.body);
+    
+}, function (req, res) {
+    
   console.log('Segunda etapa');
+    
     const NewUser = new User();
     	Object.assign (NewUser,req.body);
     	NewUser.save()
@@ -71,6 +76,12 @@ app.post('/user', urlencodedParser, function (req, res, next) {
 			})
     		.catch(error => {} )
 });
+
+function validatereq(data){
+    
+  if(validator.isEmail(data.email)){
+     next();}else{res.send('fail');}
+}
 
 // route for pong //
 
@@ -139,7 +150,7 @@ app.post('/usermany', urlencodedParser, function(req, res) {
 			})
         .catch(error => {} )
 ;})})
-    
+ /*   
 app.post('/user', urlencodedParser, function(req, res) {
     	const NewUser = new User();
     	Object.assign (NewUser,req.body);
@@ -152,7 +163,7 @@ app.post('/user', urlencodedParser, function(req, res) {
     		.catch(error => {} )
     
 })
-
+*/
 // route to delete users by id in the url //
 
 app.delete('/user/:_id', function (req, res){ 
