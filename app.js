@@ -62,7 +62,7 @@ app.post('/user', function (req, res, next) {
 
     console.log('Primera etapa');
 
-    if (validatereq(req.body) == true){next();}else{res.send('info no valida')};
+    if (validatereq(req.body) == true){next();}
 
 
 }, function (req, res, next) {
@@ -77,7 +77,7 @@ app.post('/user', function (req, res, next) {
             console.log('Añadido usuario:');
             console.log(user);
         })
-        .catch(error => {res.send('esto no va');})
+        .catch(error => {res.send('Usuario no añadido');})
 });
 
 function validatereq(data) {
@@ -86,8 +86,8 @@ function validatereq(data) {
 
         return true
     } else {
-        return false;
-        res.send('fail');
+         console.log( req.body.email + ' No es un email');
+        res.send('Datos no validos');
     }
 }
 
