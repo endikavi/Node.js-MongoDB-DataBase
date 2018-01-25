@@ -62,7 +62,7 @@ app.post('/user', function (req, res, next) {
 
     console.log('Primera etapa');
 
-    if (validatereq(req.body) == true){next();};
+    if (validatereq(req.body) == true){next();}else{res.send('info no valida')};
 
 
 }, function (req, res, next) {
