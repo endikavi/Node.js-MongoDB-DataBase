@@ -69,7 +69,6 @@ app.post('/user', function (req, res, next) {
 
     console.log('Segunda etapa');
     console.log( req.body.email + ' Es un email');
-    res.send('esto no va');
     const NewUser = new User();
     Object.assign(NewUser, req.body);
     NewUser.save()
@@ -78,7 +77,7 @@ app.post('/user', function (req, res, next) {
             console.log('Añadido usuario:');
             console.log(user);
         })
-        .catch(error => {})
+        .catch(error => {res.send('esto no va');})
 });
 
 function validatereq(data) {
