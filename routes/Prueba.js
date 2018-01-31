@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const app = express();
+const UserCtrl = require('../controllers/userctrl');
 
-/* GET prueba page. */
-router.get('/', function(req, res, next) {
-  res.render('prueba', { Estado: 'Activa' });
-});
+app.route('/')
+.get(UserCtrl.prueba)
 
-module.exports = router;
+module.exports = app ;
+
