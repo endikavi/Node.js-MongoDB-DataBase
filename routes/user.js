@@ -1,15 +1,10 @@
-var express = require('express');
-var UserRoutes = express();
-//const UserCtrl = require('')//
-
-
-// routes //
-
-//UserRoutes.route()
+const express = require('express');
+const app = express();
+const UserCtrl = require('../controllers/ctrl')
 
 // Añadir usuario
 
-UserRoutes.post('/user', function (req, res, next) {
+app.post('/', function (req, res, next) {
 
     console.log('Primera etapa');
 
@@ -33,7 +28,7 @@ UserRoutes.post('/user', function (req, res, next) {
 
 // route to obtain all users //
 
-UserRoutes.get('/user', function (req, res) {
+app.get('/', function (req, res) {
     User.find().lean().exec(function (err, Users) {
         if (err) return console.error(err);
         console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
@@ -42,7 +37,7 @@ UserRoutes.get('/user', function (req, res) {
 })
 
 // find by id    
-UserRoutes.get('/user/:_id', function (req, res) {
+app.get('//:_id', function (req, res) {
 
     User.find({
         _id: req.params._id
@@ -55,7 +50,7 @@ UserRoutes.get('/user/:_id', function (req, res) {
 
 // route for searchs //
 
-UserRoutes.post('/userfind', urlencodedParser, function (req, res) {
+app.post('/find', urlencodedParser, function (req, res) {
     User.find(req.body).lean().exec(function (err, Users) {
         if (err) return console.error(err);
         console.log(req.body)
@@ -66,7 +61,7 @@ UserRoutes.post('/userfind', urlencodedParser, function (req, res) {
 
 // route for specific //
 
-UserRoutes.get('/userfindactive', urlencodedParser, function (req, res) {
+app.get('/findactive', urlencodedParser, function (req, res) {
     User.find({
         active: true
     }).lean().exec(function (err, Users) {
@@ -79,7 +74,7 @@ UserRoutes.get('/userfindactive', urlencodedParser, function (req, res) {
 
 // route to add users //
 
-UserRoutes.post('/usermany', urlencodedParser, function (req, res) {
+app.post('/many', urlencodedParser, function (req, res) {
 
     req.body.map(element => {
         const NewUser = new User();
@@ -93,7 +88,7 @@ UserRoutes.post('/usermany', urlencodedParser, function (req, res) {
     })
 })
 /*   
-UserRoutes.post('/user', urlencodedParser, function(req, res) {
+app.post('/', urlencodedParser, function(req, res) {
     	const NewUser = new User();
     	Object.assign (NewUser,req.body);
     	NewUser.save()
@@ -108,7 +103,7 @@ UserRoutes.post('/user', urlencodedParser, function(req, res) {
 */
 // route to delete users by id in the url //
 
-UserRoutes.delete('/user/:_id', function (req, res) {
+app.delete('//:_id', function (req, res) {
     User.remove({
         _id: req.params._id
     }, function (err) {
@@ -120,7 +115,7 @@ UserRoutes.delete('/user/:_id', function (req, res) {
 
 //ruta para eliminar varios usuarios
 
-UserRoutes.delete('/userdel', function (req, res) {
+app.delete('/del', function (req, res) {
     array = [];
     let obj = JSON.stringify(req.body);
     JSON.parse(obj, function (x, y) {
@@ -141,7 +136,7 @@ UserRoutes.delete('/userdel', function (req, res) {
 })
 
 //ruta alternativa recibiendo el _id en la url
-UserRoutes.put('/user/:_id', urlencodedParser, function (req, res) {
+app.put('//:_id', urlencodedParser, function (req, res) {
 
     const Update = ({
         dni: req.body.dni,
@@ -169,7 +164,7 @@ UserRoutes.put('/user/:_id', urlencodedParser, function (req, res) {
         " Email: " + req.body.email);
 })
 //ruta para modificar el email de un usuario
-UserRoutes.path('/useremail/_id', function (req, res) {
+app.path('/email/_id', function (req, res) {
 
     console.log('email actualizado: ' + req.body.email);
 
@@ -178,4 +173,4 @@ UserRoutes.path('/useremail/_id', function (req, res) {
 
 
 
-module.exports = UserRoutes;
+module.exports = app;
