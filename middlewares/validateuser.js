@@ -1,6 +1,9 @@
-function validatereq(data) {
 
-    if (validator.isEmail(data.email)) {
+const validator = require('validator');
+
+exports.validatereq = (user) => {
+
+    if (validator.isEmail(user.email)) {
 
         return true
     } else {

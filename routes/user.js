@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
-const UserCtrl = require('../controllers/ctrl')
+const UserCtrl = require('../controllers/userctrl')
+const User = require('../modules/user-schema')
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.raw();
+const urlencodedParser = bodyParser.urlencoded({extended: false})
 
 // Añadir usuario
 
@@ -29,15 +33,11 @@ app.post('/', function (req, res, next) {
 // route to obtain all users //
 
 app.get('/', function (req, res) {
-    User.find().lean().exec(function (err, Users) {
-        if (err) return console.error(err);
-        console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
-        res.send('{"users":' + JSON.stringify(Users) + '}');
-    })
+    UserCtrl.getAllUsers(req, res);
 })
 
 // find by id    
-app.get('//:_id', function (req, res) {
+app.get('/:_id', function (req, res) {
 
     User.find({
         _id: req.params._id
@@ -103,7 +103,7 @@ app.post('/', urlencodedParser, function(req, res) {
 */
 // route to delete users by id in the url //
 
-app.delete('//:_id', function (req, res) {
+app.delete('/:_id', function (req, res) {
     User.remove({
         _id: req.params._id
     }, function (err) {
@@ -136,7 +136,7 @@ app.delete('/del', function (req, res) {
 })
 
 //ruta alternativa recibiendo el _id en la url
-app.put('//:_id', urlencodedParser, function (req, res) {
+app.put('/:_id', urlencodedParser, function (req, res) {
 
     const Update = ({
         dni: req.body.dni,
@@ -164,7 +164,7 @@ app.put('//:_id', urlencodedParser, function (req, res) {
         " Email: " + req.body.email);
 })
 //ruta para modificar el email de un usuario
-app.path('/email/_id', function (req, res) {
+app.path('/email/:_id', function (req, res) {
 
     console.log('email actualizado: ' + req.body.email);
 

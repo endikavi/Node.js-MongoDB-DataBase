@@ -13,9 +13,6 @@ const router = express.Router();
 // Modules //
 
 
-const User = require('./modules/user-schema');
-/*const UserRoutes = require('./modules/user-schema');
-const prueba = require('./routes/Prueba'); */
 
 // Constants //
 const jsonParser = bodyParser.raw();
@@ -53,6 +50,9 @@ app.set('view engine', 'hbs');
 const prueba = require('./routes/Prueba');
 app.use('/prueba', prueba);
 
+const user = require('./routes/user');
+app.use('/user', user);
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -61,7 +61,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // middleware para validacion //
-
+/*
 app.post('/user', function (req, res, next) {
 
     console.log('Primera etapa');
@@ -94,7 +94,7 @@ function validatereq(data) {
         res.send('Datos no validos');
     }
 }
-
+*/
 // route for pong //
 
 app.get('/pong', function (req, res) {
@@ -110,7 +110,7 @@ app.get('/', function (req, res) {
 });
 
 // route to obtain all users //
-
+/*
 app.get('/user', function (req, res) {
     User.find().lean().exec(function (err, Users) {
         if (err) return console.error(err);
@@ -169,7 +169,7 @@ app.post('/usermany', urlencodedParser, function (req, res) {
             })
             .catch(error => {});
     })
-})
+})*/
 /*   
 app.post('/user', urlencodedParser, function(req, res) {
     	const NewUser = new User();
@@ -185,7 +185,7 @@ app.post('/user', urlencodedParser, function(req, res) {
 })
 */
 // route to delete users by id in the url //
-
+/*
 app.delete('/user/:_id', function (req, res) {
     User.remove({
         _id: req.params._id
@@ -253,7 +253,7 @@ app.path('/useremail/_id', function (req, res) {
 
     res.send('email actualizado: ' + req.body.email);
 })
-
+*/
 // catch 404 and forward to error handler //
 
 app.use(function (req, res, next) {
