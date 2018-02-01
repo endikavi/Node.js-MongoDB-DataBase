@@ -6,6 +6,16 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.raw();
 const urlencodedParser = bodyParser.urlencoded({extended: false})
 
+
+// todas las rutas en una misma funcion //
+
+app.route('/')
+
+// route to obtain all users //
+//  .get(function(req, res) { UserCtrl.getAllUsers(req,res);})
+    .get = (req,res) =>  UserCtrl.getAllUsers()
+  
+
 // Añadir usuario
 
 app.post('/', function (req, res, next) {
@@ -31,11 +41,11 @@ app.post('/', function (req, res, next) {
 });
 
 // route to obtain all users //
-
+/*
 app.get('/', function (req, res) {
     UserCtrl.getAllUsers(req, res);
 })
-
+*/
 // find by id    
 app.get('/:_id', function (req, res) {
 
@@ -87,20 +97,6 @@ app.post('/many', urlencodedParser, function (req, res) {
             .catch(error => {});
     })
 })
-/*   
-app.post('/', urlencodedParser, function(req, res) {
-    	const NewUser = new User();
-    	Object.assign (NewUser,req.body);
-    	NewUser.save()
-    		.then(user => {
-				res.send(user);
-        		console.log('Añadido usuario:');
-				console.log(user);
-			})
-    		.catch(error => {} )
-    
-})
-*/
 // route to delete users by id in the url //
 
 app.delete('/:_id', function (req, res) {
