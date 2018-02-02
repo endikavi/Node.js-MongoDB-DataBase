@@ -8,12 +8,12 @@ const urlencodedParser = bodyParser.urlencoded({extended: false})
 
 
 // todas las rutas en una misma funcion //
-
+/*
 app.route('/')
 
 // route to obtain all users //
-//  .get(function(req, res) { UserCtrl.getAllUsers(req,res);})
-    .get = (req,res) =>  UserCtrl.getAllUsers()
+.get(function(req, res) { UserCtrl.getAllUsers(req,res);})*/
+
   
 
 // Añadir usuario
@@ -41,11 +41,11 @@ app.post('/', function (req, res, next) {
 });
 
 // route to obtain all users //
-/*
+
 app.get('/', function (req, res) {
     UserCtrl.getAllUsers(req, res);
 })
-*/
+
 // find by id    
 app.get('/:_id', function (req, res) {
 

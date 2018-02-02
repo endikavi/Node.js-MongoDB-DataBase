@@ -52,7 +52,16 @@ app.use('/prueba', prueba);
 
 const user = require('./routes/user');
 app.use('/user', user);
+/*
+const client = require('./routes/index');
+app.use('/manager', client);
 
+const pong = require('./routes/pong');
+app.use('/pong', pong);
+
+const panel = require('./routes/panel');
+app.use('/', panel);
+*/
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
