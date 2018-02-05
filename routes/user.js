@@ -1,52 +1,30 @@
 const express = require('express');
-const app = express();
+const route = express.Router();
 const UserCtrl = require('../controllers/userctrl')
 const User = require('../modules/user-schema')
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.raw();
-const urlencodedParser = bodyParser.urlencoded({extended: false})
 
-app.use (bodyParser.json())
-// todas las rutas en una misma funcion //
-
-app.route('/')
+// body parser //
+route.use (bodyParser.json())
 
 // route to obtain all users //
-.get((req,res) => {UserCtrl.getAllUsers(req, res);})
+route.get('/',UserCtrl.getAllUsers(req, res))
+
 // route to add user //
-.post((req, res) => {UserCtrl.addUser(req, res);})
+route.post('/',UserCtrl.addUser(req, res))
+
 // route to delete user //
-.delete((req, res) => {UserCtrl.deleteUser(req, res);})
+route.delete('/:id',UserCtrl.deleteUser(req, res))
+
+// route to update user //
+route.put('/:id',UserCtrl.updateUser(req, res))
 
 
-// Añadir usuario
-
-/*app.post('/', function (req, res, next) {
-
-    console.log('Primera etapa');
-
-    if (validatereq(req.body) == true){next();}
 
 
-}, function (req, res, next) {
 
-    console.log('Segunda etapa');
-    console.log( req.body.email + ' Es un email');
-    const NewUser = new User();
-    Object.assign(NewUser, req.body);
-    NewUser.save()
-        .then(user => {
-            res.send(user);
-            console.log('Añadido usuario:');
-            console.log(user);
-        })
-        .catch(error => {res.send('Usuario no añadido');})
-});*/
 
-// route to obtain all users //
-
-//app.get('/', function (req, res) {UserCtrl.getAllUsers(req, res);})
-
+/*
 // find by id    
 app.get('/:_id', function (req, res) {
 
@@ -167,7 +145,7 @@ app.path('/email/:_id', function (req, res) {
 
     res.send('email actualizado: ' + req.body.email);
 })
+*/
 
 
-
-module.exports = app;
+module.exports = route;
