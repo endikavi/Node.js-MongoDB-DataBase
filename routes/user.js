@@ -15,10 +15,10 @@ app.get('/',(req, res) => UserCtrl.getAllUsers(req, res));
 app.post('/',(req, res) => UserCtrl.addUser(req, res));
 
 // route to delete user //
-app.delete('/:id',(req, res) => UserCtrl.deleteUser(req, res));
+app.delete('/:_id',(req, res) => UserCtrl.deleteUser(req, res));
 
 // route to update user //
-app.put('/:id',(req, res) => UserCtrl.updateUser(req, res));
+app.put('/:_id',(req, res) => UserCtrl.updateUser(req, res));
 
 
 

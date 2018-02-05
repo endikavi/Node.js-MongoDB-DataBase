@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const validator = require('validator');
-const router = express.Router();
 
 // Modules //
 
@@ -20,6 +19,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: false})
 const mongodbRoute = 'mongodb://endika:endika@ds149865.mlab.com:49865/base_datos_aeg';
 const port = 3001;
 const app = express();
+const router = express.Router();
 const mongodbOptions = {
     useMongoClient: true,
     socketTimeoutMS: 0,
