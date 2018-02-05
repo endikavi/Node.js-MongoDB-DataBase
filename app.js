@@ -20,7 +20,7 @@ const urlencodedParser = bodyParser.urlencoded({extended: false})
 //const index = require('./routes/index');
 //const users = require('./routes/user');
 const mongodbRoute = 'mongodb://endika:endika@ds149865.mlab.com:49865/base_datos_aeg';
-const port = process.env.PORT;
+const port = 8080;
 const app = express();
 const mongodbOptions = {
     useMongoClient: true,
