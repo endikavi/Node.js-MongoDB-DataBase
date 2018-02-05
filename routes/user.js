@@ -13,8 +13,11 @@ app.route('/')
 
 // route to obtain all users //
 .get((req,res) => {UserCtrl.getAllUsers(req, res);})
-// route to add users //
-.post((req, res, next) => {UserCtrl.addUser(req, res);})
+// route to add user //
+.post((req, res) => {UserCtrl.addUser(req, res);})
+// route to delete user //
+.post((req, res) => {UserCtrl.deleteUser(req, res);})
+
 
 // Añadir usuario
 
