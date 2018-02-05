@@ -10,10 +10,10 @@ console.log('hola');
 
 exports.getAllUsers = (req, res) => {
     
-        User.find().lean().exec(function (err, Users) {
+        User.find().lean().exec(function (err, users) {
             if (err) return console.error(err);
-            console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
-        res.send('{"users":' + JSON.stringify(Users) + '}');
+            console.log('Se pidio la lista de usuarios,actualmente contiene ' + users.length + ' usuarios');
+        res.send('{"users":' + JSON.stringify(users) + '}');
             
     })
 }
@@ -43,5 +43,7 @@ exports.addUser = (req, res) => {
         res.send('Informacion no valida')
          }
 }
+
+exports.deleteUser = (req, res) => {}
 
 exports.deleteUser = (req, res) => {}

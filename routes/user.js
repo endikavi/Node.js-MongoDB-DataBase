@@ -16,7 +16,7 @@ app.route('/')
 // route to add user //
 .post((req, res) => {UserCtrl.addUser(req, res);})
 // route to delete user //
-.post((req, res) => {UserCtrl.deleteUser(req, res);})
+.delete((req, res) => {UserCtrl.deleteUser(req, res);})
 
 
 // Añadir usuario
@@ -52,10 +52,10 @@ app.get('/:_id', function (req, res) {
 
     User.find({
         _id: req.params._id
-    }).lean().exec(function (err, Users) {
+    }).lean().exec(function (err, users) {
         if (err) return console.error(err);
-        console.log('Se pidio la lista de usuarios,actualmente contiene ' + Users.length + ' usuarios');
-        res.send('{"users":' + JSON.stringify(Users) + '}');
+        console.log('Se pidio la lista de usuarios,actualmente contiene ' + users.length + ' usuarios');
+        res.send('{"users":' + JSON.stringify(users) + '}');
     })
 })
 
