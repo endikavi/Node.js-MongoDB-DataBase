@@ -1,13 +1,11 @@
 
 const validator = require('validator');
 
-exports.validatereq = (user) => {
+exports.validateUserPost = (user) => {
 
-    if (validator.isEmail(user.email)) {
+    if (validator.isEmail(user.email) && validator.isBoolean(user.active) && validator.isLength(user.dni, {min:9, max:9})) {
 
         return true
-    } else {
-         console.log( req.body.email + ' No es un email');
-        res.send('Datos no validos');
+        
     }
 }

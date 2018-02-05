@@ -6,19 +6,19 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.raw();
 const urlencodedParser = bodyParser.urlencoded({extended: false})
 
-
+app.use (bodyParser.json())
 // todas las rutas en una misma funcion //
-/*
+
 app.route('/')
 
 // route to obtain all users //
-.get(function(req, res) { UserCtrl.getAllUsers(req,res);})*/
-
-  
+.get((req,res) => {UserCtrl.getAllUsers(req, res);})
+// route to add users //
+.post((req, res, next) => {UserCtrl.addUser(req, res);})
 
 // Añadir usuario
 
-app.post('/', function (req, res, next) {
+/*app.post('/', function (req, res, next) {
 
     console.log('Primera etapa');
 
@@ -38,13 +38,11 @@ app.post('/', function (req, res, next) {
             console.log(user);
         })
         .catch(error => {res.send('Usuario no añadido');})
-});
+});*/
 
 // route to obtain all users //
 
-app.get('/', function (req, res) {
-    UserCtrl.getAllUsers(req, res);
-})
+//app.get('/', function (req, res) {UserCtrl.getAllUsers(req, res);})
 
 // find by id    
 app.get('/:_id', function (req, res) {
