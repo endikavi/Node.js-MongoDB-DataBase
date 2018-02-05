@@ -1,23 +1,24 @@
 const express = require('express');
 const route = express.Router();
+const app = express();
 const UserCtrl = require('../controllers/userctrl')
 const User = require('../modules/user-schema')
 const bodyParser = require('body-parser');
 
 // body parser //
-route.use (bodyParser.json())
+app.use (bodyParser.json())
 
 // route to obtain all users //
-route.get('/',UserCtrl.getAllUsers(req, res))
+app.get('/',(req, res) => UserCtrl.getAllUsers(req, res));
 
 // route to add user //
-route.post('/',UserCtrl.addUser(req, res))
+app.post('/',(req, res) => UserCtrl.addUser(req, res));
 
 // route to delete user //
-route.delete('/:id',UserCtrl.deleteUser(req, res))
+app.delete('/:id',(req, res) => UserCtrl.deleteUser(req, res));
 
 // route to update user //
-route.put('/:id',UserCtrl.updateUser(req, res))
+app.put('/:id',(req, res) => UserCtrl.updateUser(req, res));
 
 
 
@@ -148,4 +149,4 @@ app.path('/email/:_id', function (req, res) {
 */
 
 
-module.exports = route;
+module.exports = app;

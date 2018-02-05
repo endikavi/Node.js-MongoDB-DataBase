@@ -1,2 +1,3 @@
+cmd start
 npm start
 
