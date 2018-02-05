@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 // body parser //
 app.use (bodyParser.json())
-
+route.use (bodyParser.urlencoded({extended: false}))
 // route to obtain all users //
 app.get('/',(req, res) => UserCtrl.getAllUsers(req, res));
 
@@ -15,19 +15,19 @@ app.get('/',(req, res) => UserCtrl.getAllUsers(req, res));
 app.post('/',(req, res) => UserCtrl.addUser(req, res));
 
 // route to delete user //
-app.delete('/:_id',(req, res) => UserCtrl.deleteUser(req, res));
+route.delete('/:_id',(req, res) => UserCtrl.delUser(req, res));
 
 // route to update user //
-app.put('/:_id',(req, res) => UserCtrl.updateUser(req, res));
+app.put('/a/:_id',(req, res) => (data = req.params._id ,UserCtrl.updateUser(req, res, data)));
 
 
 
 
 
 
-/*
+
 // find by id    
-app.get('/:_id', function (req, res) {
+route.get('/:_id', function (req, res) {
 
     User.find({
         _id: req.params._id
@@ -39,7 +39,7 @@ app.get('/:_id', function (req, res) {
 })
 
 // route for searchs //
-
+/*
 app.post('/find', urlencodedParser, function (req, res) {
     User.find(req.body).lean().exec(function (err, Users) {
         if (err) return console.error(err);
@@ -150,3 +150,5 @@ app.path('/email/:_id', function (req, res) {
 
 
 module.exports = app;
+
+module.exports = route;

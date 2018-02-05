@@ -42,6 +42,6 @@ exports.addUser = (req, res) => {
 	}
 }
 
-exports.deleteUser = (req, res) => {console.log(req.params._id)}
+exports.delUser = (req, res) => console.log('hola')
 
 exports.deleteUser = (req, res) => {}
