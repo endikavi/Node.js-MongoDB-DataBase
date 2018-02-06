@@ -2,7 +2,7 @@ const mongoose = require ('mongoose');
 //esquema de usuario
 
 const userSchema = mongoose.Schema({
-    dni: {type: String, min: 8, max: 11, unique: true, required : false},
+    dni: {type: String, min: 8, max: 11, unique: true, required : true},
     first_name: {type: String, min: 1, max: 15, unique: false, required : false},
     last_name: {type: String, min: 1, max: 15, unique: false, required : false,},
     email: {type: String , unique : true},
