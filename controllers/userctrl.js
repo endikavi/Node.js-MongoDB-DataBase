@@ -45,7 +45,7 @@ exports.addUser = (req, res) => {
 }
 
 
-exports.delUser = (req, res) => {
+exports.deleteUser = (req, res) => {
     User.remove({
         _id: req.params._id
     }, function (err) {

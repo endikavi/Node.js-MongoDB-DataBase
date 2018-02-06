@@ -13,7 +13,7 @@ route.get('/',UserCtrl.getAllUsers);
 route.post('/',UserCtrl.addUser);
 
 // route to delete user //
-route.delete('/:_id',UserCtrl.delUser);
+route.delete('/:_id',UserCtrl.deleteUser);
 
 // route to update user //
 route.put('/:_id',UserCtrl.updateUser);
