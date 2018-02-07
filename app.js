@@ -50,6 +50,8 @@ app.use('/prueba', prueba);
 
 const user = require('./routes/user');
 app.use('/user', user);
+const login = require('./routes/login');
+app.use('/', login);
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -67,7 +69,7 @@ app.get('/pong', function (req, res) {
 
 // route for client //
 
-app.get('/', function (req, res) {
+app.get('/client', function (req, res) {
     console.log('Pedido el cliente');
     res.render('panel')
 });
