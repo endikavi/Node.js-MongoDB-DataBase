@@ -1,0 +1,69 @@
+h1 {
+    
+    font-weight: 900;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-color: gray;
+    border-bottom-style: solid;
+    background-color: aliceblue;
+    height: 70px;
+    
+}
+
+p {
+    
+    display: inline;
+    
+}
+    
+td {
+    
+    border-style:solid
+    
+}   
+body {
+    padding-top: 40px;
+    background-color:whitesmoke;
+    
+}
+.content {
+    
+    border-radius: 20px;
+    border-color: gray;
+    border-style: solid; 
+    margin: auto;
+    background-color: aliceblue;
+    width: 710px;
+    
+}
+
+.form-body {
+    
+    margin: auto;
+    width: 610px;
+    
+}
+
+p {
+    
+    font-weight: 200;
+    color: black;
+    text-align: left;
+    
+}
+
+.buttom-sub {
+    
+    margin: auto;
+    text-align: center;
+    width: 305px;   
+    
+}
+
+.link {
+   
+     margin: auto;
+     text-align: center;
+    
+}

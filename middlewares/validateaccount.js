@@ -3,7 +3,7 @@ const validator = require('validator');
 exports.validateAccount = (user) => {
 
     if(typeof(user.username) != "undefined" && typeof(user.password) != "undefined" && typeof(user.email) != "undefined" && 
-       typeof(user.username) == "" && typeof(user.password) == "" && typeof(user.email) == "" ){
+      user.username === null && user.password === null && user.email === null ){
             
         
         if (validator.isEmail(user.email)) {

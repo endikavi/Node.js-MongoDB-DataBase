@@ -27,6 +27,7 @@ exports.accountRegister = (req , res) => {
    if (accountValidator.validateAccount(req.body) == true){
        console.log('todo correcto')
    }else{
+       console.log('datos incorrectos')
        res.render('register')
    }
 }

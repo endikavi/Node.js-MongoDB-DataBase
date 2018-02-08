@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<style>
-p {
-    
-    display: inline;
-    
-}
-    
-td {
-    
-    border-style:solid
-    
-    }    
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="/stylesheets/css/login.css">   
 <html>
 <body>
+<div class="content">
+<div class="form-group">
+<h1>Iniciar sesion</h1>
 <form action="/" method="POST" class="login">
-<h1>Inicia sesion:</h1><br>
-    <div><table><tr><td><p>Nombre de Usuario:</p>
-        <input type=text id="username" name="username"> </td><td><p>    Contraseña:</p>
-        <input type=text id="password" name="password"></td><td>
-<input type="submit"></td></tr></table></div>
+    <div class="form-body">
+        <br>
+        <p>Nombre de Usuario:</p>
+        <input class="form-control" type=text id="username" name="username">
+        <br>
+        <p>Contraseña:</p>
+        <input class="form-control" type=text id="password" name="password">
+        <br>
+        <div class="buttom-sub">
+        <input class="form-control" type="submit">
+        </div>
+    </div>
 </form>
    <br>
    <br>
+    <div class="link">
     <a href="/register">Registrarse</a>
-
+    </div>
+    </div></div>
 </body>
 </html>
