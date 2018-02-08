@@ -1,14 +1,17 @@
 h1 {
     
-    font-weight: 900;
+	padding-top: 10px;
+    font-weight: 100;
     text-align: center;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-color: gray;
-    border-bottom-style: solid;
-    background-color: aliceblue;
-    height: 70px;
-    
+    height: auto;
+	margin: auto;
+	color: black;
+	width: 510px;
+	font-family: serif;
+	border-bottom-style: solid;
+	border-color: gray;
+	border-width: 1px;
+
 }
 
 p {
@@ -23,25 +26,38 @@ td {
     
 }   
 body {
-    padding-top: 40px;
-    background-color:whitesmoke;
+	
+padding-top: 40px;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#663666+0,ffffff+25,ffffff+75,663666+100 */
+background: rgb(102,54,102); /* Old browsers */
+background: -moz-linear-gradient(left, rgb(102,54,102) 0%, rgb(255,255,255) 25%, rgb(255,255,255) 75%, rgb(102,54,102) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgb(102,54,102) 0%,rgb(255,255,255) 25%,rgb(255,255,255) 75%,rgb(102,54,102) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgb(102,54,102) 0%,rgb(255,255,255) 25%,rgb(255,255,255) 75%,rgb(102,54,102) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#663666', endColorstr='#663666',GradientType=1 ); /* IE6-9 */
     
 }
 .content {
     
     border-radius: 20px;
-    border-color: gray;
+	border: 2px;
+    border-color: #660066;
     border-style: solid; 
     margin: auto;
-    background-color: aliceblue;
+    background-color: ghostwhite;
     width: 710px;
     
 }
 
 .form-body {
-    
+	
+    background-color: aliceblue;
     margin: auto;
     width: 610px;
+	border-style: solid;
+	border-color: darkgray;
+	border-width: 1px;
+	border-radius: 20px;
+	padding: 10px;
     
 }
 
@@ -62,8 +78,14 @@ p {
 }
 
 .link {
-   
+     
      margin: auto;
      text-align: center;
     
+}
+
+.form-control {
+	
+	border-color: gray;
+	
 }
