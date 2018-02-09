@@ -30,9 +30,9 @@ body {
 padding-top: 40px;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#72aad8+0,ffffff+25,ffffff+75,72aad8+100 */
 background: rgb(114,170,216); /* Old browsers */
-background: -moz-linear-gradient(left, rgb(114,170,216) 0%, rgb(255,255,255) 25%, rgb(255,255,255) 75%, rgb(114,170,216) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, rgb(114,170,216) 0%,rgb(255,255,255) 25%,rgb(255,255,255) 75%,rgb(114,170,216) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, rgb(114,170,216) 0%,rgb(255,255,255) 25%,rgb(255,255,255) 75%,rgb(114,170,216) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: -moz-linear-gradient(left, rgb(114,170,216) 0%, rgb(255,255,255) 15%, rgb(255,255,255) 85%, rgb(114,170,216) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgb(114,170,216) 0%,rgb(255,255,255) 15%,rgb(255,255,255) 85%,rgb(114,170,216) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgb(114,170,216) 0%,rgb(255,255,255) 15%,rgb(255,255,255) 85%,rgb(114,170,216) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72aad8', endColorstr='#72aad8',GradientType=1 ); /* IE6-9 */
     
 }
@@ -43,14 +43,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72aad8', end
     border-color: #B1C6D3;
     border-style: solid; 
     margin: auto;
-    background-color: #EDF6F7;
+    background-color: rgb(245,255,255);
     width: 710px;
     
 }
 
 .form-body {
 	
-    background-color: aliceblue;
+    background-color: rgb(250,255,255);
     margin: auto;
     width: 610px;
 	border-style: solid;
@@ -73,7 +73,7 @@ p {
     
     margin: auto;
     text-align: center;
-    width: 305px;   
+    width: 100px;
     
 }
 
@@ -86,6 +86,10 @@ p {
 
 .form-control {
 	
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-radius: 0px;
 	border-color: gray;
 	
 }
