@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="/stylesheets/css/login.css"> 
+<link rel="stylesheet" href="/stylesheets/css/register.css">
 <html>
 <body>
 <div class="content">
@@ -11,15 +11,17 @@
     <div class="form-body">
         <br>
         <p>Nombre de Usuario:</p>
-        <input class="form-control" type=text id="username" name="username">
+        <input class="form-control" type=text id="username" name="username" required placeholder="Username..." required pattern="[A-z0-9À-ž]{3,15}$" minlength="3" maxlength="15" title="El nombre de usuario debe de tener entre 3 y 15 caracteres alfanumericos.">
         <br>
         <p>Email:</p>
-        <input class="form-control" type=text id="email" name="email">
+        <input class="form-control" type=text id="email" name="email" required placeholder="Email..." required pattern="[A-z0-9À-ž]+@[A-z0-9À-ž]+\.[A-zÀ-ž]{2,3}$" minlength="8" maxlength="40" title="El email dede de ser correcto o no podras validar la cuenta.">
         <br>
         <p>Contraseña:</p>
-        <input class="form-control" type=text id="password" name="password">
+        <input class="form-control" type=password id="password" name="password" required placeholder="Password..." required pattern="(?=[A-z0-9À-ž]+$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}" minlength="8" maxlength="40" title="La contraseña debe contener entre 8 y 40 caracteres alfanumericos y incluir minusculas,mayusculas y numeros.">
         <br>
+		<div class="checkbox"><p><input id="field" type="checkbox" required>  Acepto las <a href="./" target="_blank">condiciones de uso</a></p></div>
         <div class="buttom-sub">
+			<div class="alert"><p>{{{alert}}}</p></div>
         <input class="form-control" type="submit" value="Registrarse">
         </div>
     </div>

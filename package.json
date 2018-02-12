@@ -5,23 +5,25 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-     "start": "node ./bin/www",
-     "test": "echo \"Error: no test specified\" && exit 1" 
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-   "author": "endika",
+  "author": "endika",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }, 
+  },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "hbs": "~4.0.1",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5",
     "mongoose": "^4.13.5",
-    "validator": "^9.1.2" 
+    "morgan": "~1.9.0",
+    "passport": "^0.4.0",
+    "serve-favicon": "~2.4.5",
+    "validator": "^9.1.2"
   }
 }

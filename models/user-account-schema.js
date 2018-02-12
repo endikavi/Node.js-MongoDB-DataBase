@@ -3,16 +3,18 @@ const mongoose = require ('mongoose');
 
 const UserAccountSchema = mongoose.Schema({
     
-    email: {type: String , unique : true , required : true},
-    username: {type: String, min: 1, max: 15, unique: true , required : true},
-    Survivors: {
-        SurvivorOne: String ,
-        SurvivorTwo: String ,
-        SurvivorThree: String     
-    },
-    password: {type: String , unique : false , required : true}
-    
-});//hash?
+    email: {type: String , unique : true , required : true} ,
+    username: {type: String, min: 1, max: 15, unique: true , required : true} ,
+	password: {type: String , unique : false , required : true},
+	acid: {type: String , unique : true , required : true} ,
+	
+    SurvivorOne: {type: String, min: 1, max: 15, unique: false , required : false} ,
+    SurvivorTwo: {type: String, min: 1, max: 15, unique: false , required : false} ,
+    SurvivorThree: {type: String, min: 1, max: 15, unique: false , required : false} ,
+	
+	packs: { type : Array , "default" : [] }
+	  
+});
 
 //exportamos el modulo
 module.exports = mongoose.model('gameUser', UserAccountSchema);

@@ -30,9 +30,9 @@ body {
 padding-top: 40px;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#72aad8+0,ffffff+25,ffffff+75,72aad8+100 */
 background: rgb(114,170,216); /* Old browsers */
-background: -moz-linear-gradient(left, rgb(114,170,216) 0%, rgb(255,255,255) 15%, rgb(255,255,255) 85%, rgb(114,170,216) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, rgb(114,170,216) 0%,rgb(255,255,255) 15%,rgb(255,255,255) 85%,rgb(114,170,216) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, rgb(114,170,216) 0%,rgb(255,255,255) 15%,rgb(255,255,255) 85%,rgb(114,170,216) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: -moz-linear-gradient(left, rgb(25,100,100) 0%, rgb(255,255,255) 50%, rgb(25,100,100) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgb(25,100,100) 0%,rgb(255,255,255) 50%,rgb(25,100,100) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgb(25,100,100) 0%,rgb(20,205,205) 50%,rgb(25,100,100) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72aad8', endColorstr='#72aad8',GradientType=1 ); /* IE6-9 */
     
 }
@@ -40,10 +40,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72aad8', end
     
     border-radius: 20px;
 	border: 2px;
-    border-color: #B1C6D3;
+    border-color: gray;
     border-style: solid; 
     margin: auto;
-    background-color: rgb(245,255,255);
+    background-color: rgb(249,255,255);
     width: 710px;
     
 }
@@ -53,8 +53,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72aad8', end
     background-color: rgb(250,255,255);
     margin: auto;
     width: 610px;
-	border-style: solid;
-	border-color: darkgray;
+	border-style: none;
+	border-color: gray;
 	border-width: 1px;
 	border-radius: 20px;
 	padding: 10px;
@@ -90,6 +90,23 @@ p {
 	border-left-style: none;
 	border-right-style: none;
 	border-radius: 0px;
+	border-width: 3px;
 	border-color: gray;
+	background-color:  rgb(250,255,255);
+	
+}
+
+.form-control:focus {
+	
+	background-color: aliceblue;
+	
+}
+
+
+.checkbox {
+	
+	     
+     margin: auto;
+     text-align: center;
 	
 }
