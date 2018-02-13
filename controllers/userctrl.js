@@ -64,9 +64,7 @@ exports.updateUser = (req, res) => {
         email: req.body.email
     });
 
-    User.update({
-        _id: req.params._id
-    }, Update, function (err) {
+    User.update({_id: req.params._id}, Update, function (err) {
         if (err) return handleError(err);
     });
 

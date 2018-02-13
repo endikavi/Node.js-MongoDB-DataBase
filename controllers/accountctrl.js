@@ -40,16 +40,25 @@ exports.accountRegister = (req , res) => {
 
 exports.checkUsername = (data) => {
 
-   return (User.find({username: data}).lean().exec(function (err, users) {
-        if (err) return console.error(err);
-		console.log(users.length);
-		return users.length;
-	}))
+    return new Promise(function(resolve, reject) {
+    	// Do async job
+       (User.find({username: data}).lean().exec(function(err, result) {
+            if (err) {
+                reject(err);
+            } 
+            resolve(result);            
+        }))
+    })       
 }
-
 exports.checkEmail = (data) => {
-
-    users = (User.find({email: data}).lean())
-		console.log(users);
-		return (users.length);
+    
+    return new Promise(function(resolve, reject) {
+    	// Do async job
+       (User.find({username: data}).lean().exec(function(err, result) {
+            if (err) {
+                reject(err);
+            } 
+            resolve(result);            
+        }))
+    })         
 }

@@ -1,6 +1,7 @@
 const validator = require('validator');
 const AccountCtrl = require('../controllers/accountctrl')
 
+let x = 0;
 let problem = "Datos no validos:<br>";
 const problem_lost = "Faltan datos necesarios.";
 const problem_username = "El nombre de usuario no es valido.";
@@ -14,28 +15,69 @@ regular_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(
 regular_username = /(?=^[A-z0-9À-ž]+$).{3,15}$/;
 regular_password_secure = /(?=^[a-zA-Z0-9]+$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/;
 
+function addcheck(bol){    
+    x++
+    if (bol === true){return x}
+}
+
 exports.validateAccount = (user) => {
 
 	if(typeof(user.username) != "undefined" && typeof(user.password) != "undefined" && typeof(user.email) != "undefined" && 
     user.username !== "" && user.password !== "" && user.email !== "" ){
+        
+        problems = problem;
+		
+    	if (regular_email.test(user.email)) {addcheck(0);}else{problems = problems + problem_email};
+			
+		if(regular_username.test(user.username)) {addcheck(0);}else{problems = problems + problem_username};
+			
+		if (regular_password_secure.test (user.password)) {addcheck(0);}else{problems = problems + problem_password};
+             
+		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {addcheck(0);}else{problems = problems + problem_repeated};
+        
+        console.log(addcheck(true));
+        
+        if (addcheck(true) == 5){
             
-		x = 0;
-		problems = problem;
-		
-    	if (regular_email.test(user.email)) {x++}else{problems = problems + problem_email};
-			
-		if(regular_username.test(user.username)) {x++}else{problems = problems + problem_username};
-			
-		if (regular_password_secure.test (user.password)) {x++}else{problems = problems + problem_password};
-		
-		if (AccountCtrl.checkEmail(user.email) === 0) {x++}else{problems = problems + problem_email_taked};
-		
-		if (AccountCtrl.checkUsername(user.username) === 0) {x++}else{problems = problems + problem_username_taked};
-		
-		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {x++}else{problems = problems + problem_repeated};
-		
-		if (x == 6){return true}else{return problems};
-		
+        console.log('datos correctos') 
+            
+        AccountCtrl.checkEmail(user.email)
+            .then((emailChecked) => {
+                if (emailChecked.length === 0) {
+                    
+                    addcheck(0);
+            
+                }else{
+                    console.log (problems + problem_username_taked)
+                }
+            })
+        
+            .catch((err) => {
+                return err;
+            })  
+            
+        AccountCtrl.checkUsername(user.username)
+            
+            .then((userChecked) => {
+            
+                 if (userChecked.length === 0) {
+                     
+                     addcheck(0);
+                     
+                     
+                 }else{
+                     console.log (problems + problem_email_taked)
+                 }                    
+            })
+            
+            .catch((err) => {
+                 return err;
+            })  
+            
+         if (addcheck(true); == 8){return true}else{return problems()};
+            
+		}else{return problems};
+        
 	}else{return problem_lost};
 }
 

@@ -8,7 +8,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const validator = require('validator');
-
+const passport = require('passport');
+const LocalStrategy = require('passport-local')
 // Modules //
 
 
@@ -59,10 +60,19 @@ app.use(urlencodedParser);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// passport //
+
+passport.use(new LocalStrategy(function (){
+    
+      const user = {};
+    
+      return done(null, user);
+}
+));
 
 // route for pong //
 
-app.get('/pong', function (req, res) {
+app.get('/pong', passport.authenticate('local') ,function (req, res) {
     console.log('Pedido el pong')
     res.render('pong')
 })
