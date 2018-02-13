@@ -11,7 +11,7 @@
   "author": "endika",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.14.12"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
@@ -23,6 +23,7 @@
     "mongoose": "^4.13.5",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.4.5",
     "validator": "^9.1.2"
   }

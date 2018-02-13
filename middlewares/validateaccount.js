@@ -2,7 +2,8 @@ const validator = require('validator');
 const AccountCtrl = require('../controllers/accountctrl')
 
 let x = 0;
-let problem = "Datos no validos:<br>";
+let allMessages = "";
+let problems = "Datos no validos:<br>";
 const problem_lost = "Faltan datos necesarios.";
 const problem_username = "El nombre de usuario no es valido.";
 const problem_username_taked = "El nombre de usuario indicado ya esta en uso.";
@@ -15,31 +16,30 @@ regular_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(
 regular_username = /(?=^[A-z0-9À-ž]+$).{3,15}$/;
 regular_password_secure = /(?=^[a-zA-Z0-9]+$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/;
 
-function addcheck(bol){    
-    x++
-    if (bol === true){return x}
+function addcheck(option){
+x=x+1;
+if(option === "get"){return x}
+}
+
+function addproblem(option,message){
+	if (option === true){return allMessages}
+	allMessages = allMessages + message;
 }
 
 exports.validateAccount = (user) => {
 
 	if(typeof(user.username) != "undefined" && typeof(user.password) != "undefined" && typeof(user.email) != "undefined" && 
     user.username !== "" && user.password !== "" && user.email !== "" ){
-        
-        problems = problem;
 		
-    	if (regular_email.test(user.email)) {addcheck(0);}else{problems = problems + problem_email};
+		addproblem("set","");
+		
+    	if (regular_email.test(user.email)) {addcheck(0);}else{addproblem(0,problem_email)};
 			
-		if(regular_username.test(user.username)) {addcheck(0);}else{problems = problems + problem_username};
+		if(regular_username.test(user.username)) {addcheck(0);}else{addproblem(0,problem_username)};
 			
-		if (regular_password_secure.test (user.password)) {addcheck(0);}else{problems = problems + problem_password};
+		if (regular_password_secure.test (user.password)) {addcheck(0);}else{addproblem(0,problem_password)};
              
-		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {addcheck(0);}else{problems = problems + problem_repeated};
-        
-        console.log(addcheck(true));
-        
-        if (addcheck(true) == 5){
-            
-        console.log('datos correctos') 
+		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {addcheck(0);}else{addproblem(0,problem_repeated)};
             
         AccountCtrl.checkEmail(user.email)
             .then((emailChecked) => {
@@ -48,7 +48,7 @@ exports.validateAccount = (user) => {
                     addcheck(0);
             
                 }else{
-                    console.log (problems + problem_username_taked)
+                    addproblem(0,problem_username_taked)
                 }
             })
         
@@ -66,19 +66,19 @@ exports.validateAccount = (user) => {
                      
                      
                  }else{
-                     console.log (problems + problem_email_taked)
+                   addproblem(0,problem_email_taked)
                  }                    
             })
             
             .catch((err) => {
                  return err;
             })  
+         console.log(addcheck("get"))   
+         if (addcheck("get") == 8){return true}else{return addproblem(true,"")};
             
-         if (addcheck(true); == 8){return true}else{return problems()};
-            
-		}else{return problems};
+		}else{return problem_lost};
         
-	}else{return problem_lost};
-}
+	} 
+
 
     
