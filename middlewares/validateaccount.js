@@ -14,19 +14,24 @@ regular_password_secure = /(?=^[a-zA-Z0-9]+$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{
 
 exports.validateAccount = (user) => {
 
-	if(typeof(user.username) != "undefined" && typeof(user.password) != "undefined" && typeof(user.email) != "undefined" && 
-    user.username !== "" && user.password !== "" && user.email !== "" ){
+	if( typeof(user.username) != "undefined" &&typeof(user.password) != "undefined" &&
+		typeof(user.email) != "undefined" &&user.username !== "" &&
+		user.password !== "" && user.email !== "" ){
 		
 		x = 0;
 		allproblems = ["Datos no validos:<br>"];
 		
-    	if (regular_email.test(user.email)) {checker.addcheck(1);}else{checker.addproblem(1,problem_email)};
+    	if (regular_email.test(user.email)) {checker.addcheck(1);}
+		else{checker.addproblem(1,problem_email)};
 			
-		if(regular_username.test(user.username)) {checker.addcheck(1);}else{checker.addproblem(1,problem_username)};
+		if(regular_username.test(user.username)) {checker.addcheck(1);}
+		else{checker.addproblem(1,problem_username)};
 			
-		if (regular_password_secure.test (user.password)) {checker.addcheck(1);}else{checker.addproblem(1,problem_password)};
+		if (regular_password_secure.test (user.password)) {checker.addcheck(1);}
+		else{checker.addproblem(1,problem_password)};
              
-		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {checker.addcheck(1);}else{checker.addproblem(1,problem_repeated)};
+		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {checker.addcheck(1);}
+		else{checker.addproblem(1,problem_repeated)};
         
         if (checker.addcheck(2) == 4){return true}
 		
