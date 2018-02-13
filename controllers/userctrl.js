@@ -84,6 +84,11 @@ exports.searchUser = (req, res) => {
     })
 }
 
+exports.checkUser = (field, data) => {
+    User.find({field: data}).lean().exec(function (err, users) {
+        if (err) return console.error(err);
+        if (users.length = 0){return false};
+	})}
 
 exports.addManyUsers = (req, res) => {
     req.body.map(element => {
