@@ -46,68 +46,74 @@ exports.addUser = (req, res) => {
 
 
 exports.deleteUser = (req, res) => {
-    User.remove({
-        _id: req.params._id
-    }, function (err) {
-        if (err) return handleError(err);
-    });
-    console.log('Usuario eliminado ID: ' + req.params._id);
-    res.send('Usuario eliminado ID: ' + req.params._id);
+	User.remove({
+		_id: req.params._id
+	}, function (err) {
+		if (err) return handleError(err);
+	});
+	console.log('Usuario eliminado ID: ' + req.params._id);
+	res.send('Usuario eliminado ID: ' + req.params._id);
 }
 
 
 exports.updateUser = (req, res) => {
-    const Update = ({
-        dni: req.body.dni,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email
-    });
+	const Update = ({
+		dni: req.body.dni,
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		email: req.body.email
+	});
 
-    User.update({_id: req.params._id}, Update, function (err) {
-        if (err) return handleError(err);
-    });
+	User.update({
+		_id: req.params._id
+	}, Update, function (err) {
+		if (err) return handleError(err);
+	});
 
-    console.log('Usuario actualizado');
+	console.log('Usuario actualizado');
 
-    res.send('Usuario actualizado')
+	res.send('Usuario actualizado')
 }
 
 
 exports.searchUser = (req, res) => {
-    User.find({_id: req.params._id}).lean().exec(function (err, users) {
-        if (err) return console.error(err);
-        console.log('Busqueda de usuarios realizada,resultados obtenidos ' + users.length + ' usuarios');
-        res.send('{"users":' + JSON.stringify(users) + '}');
-    })
+	User.find({
+		_id: req.params._id
+	}).lean().exec(function (err, users) {
+		if (err) return console.error(err);
+		console.log('Busqueda de usuarios realizada,resultados obtenidos ' + users.length + ' usuarios');
+		res.send('{"users":' + JSON.stringify(users) + '}');
+	})
 }
 
 exports.checkUser = (field, data) => {
-	toFind = JSON.stringify ("{"+field+" : '"+data+"'}");
-	toFind = JSON.parse (toFind);
+	toFind = JSON.stringify("{" + field + " : '" + data + "'}");
+	toFind = JSON.parse(toFind);
 	console.log(toFind);
-    User.find(toFind).lean().exec(function (err, users) {
-        if (err) return console.error(err);
+	User.find(toFind).lean().exec(function (err, users) {
+		if (err) return console.error(err);
 		console.log(users.length);
-        if (users.length > 0){
+		if (users.length > 0) {
 			console.log(true);
 			return true;
-		}else{console.log(false);}
-	})}
-
-exports.addManyUsers = (req, res) => {
-    req.body.map(element => {
-        const NewUser = new User();
-        Object.assign(NewUser, element);
-        NewUser.save()
-            .then(user => {
-                res.send(user);
-                console.log('Añadidos usuarios');
-            })
-            .catch(error => {
-                res.send(error);
-                console.log('Hubo algun fallo');
-            });
-    })
+		} else {
+			console.log(false);
+		}
+	})
 }
 
+exports.addManyUsers = (req, res) => {
+	req.body.map(element => {
+		const NewUser = new User();
+		Object.assign(NewUser, element);
+		NewUser.save()
+			.then(user => {
+				res.send(user);
+				console.log('Añadidos usuarios');
+			})
+			.catch(error => {
+				res.send(error);
+				console.log('Hubo algun fallo');
+			});
+	})
+}
