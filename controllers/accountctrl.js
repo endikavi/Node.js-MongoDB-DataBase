@@ -35,30 +35,3 @@ exports.accountRegister = (req , res) => {
        res.render('register', {alert: check});
     }
 }
-
-// checkear que no existe el usuario o email //
-
-exports.checkUsername = (data) => {
-
-    return new Promise(function(resolve, reject) {
-    	// Do async job
-       (User.find({username: data}).lean().exec(function(err, result) {
-            if (err) {
-                reject(err);
-            } 
-            resolve(result);            
-        }))
-    })       
-}
-exports.checkEmail = (data) => {
-    
-    return new Promise(function(resolve, reject) {
-    	// Do async job
-       (User.find({username: data}).lean().exec(function(err, result) {
-            if (err) {
-                reject(err);
-            } 
-            resolve(result);            
-        }))
-    })         
-}
