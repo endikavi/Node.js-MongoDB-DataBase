@@ -1,5 +1,5 @@
 const validator = require('validator');
-const UserCtrl = require('../controllers/userctrl')
+const AccountCtrl = require('../controllers/accountctrl')
 
 let problem = "Datos no validos:<br>";
 const problem_lost = "Faltan datos necesarios.";
@@ -28,9 +28,9 @@ exports.validateAccount = (user) => {
 			
 		if (regular_password_secure.test (user.password)) {x++}else{problems = problems + problem_password};
 		
-		if (UserCtrl.checkUser('email', user.email)) {x++}else{problems = problems + problem_email_taked};
+		if (AccountCtrl.checkEmail(user.email) === 0) {x++}else{problems = problems + problem_email_taked};
 		
-		if (UserCtrl.checkUser('username', user.username)) {x++}else{problems = problems + problem_username_taked};
+		if (AccountCtrl.checkUsername(user.username) === 0) {x++}else{problems = problems + problem_username_taked};
 		
 		if (user.password.toLowerCase().indexOf(user.username.toLowerCase()) === -1) {x++}else{problems = problems + problem_repeated};
 		

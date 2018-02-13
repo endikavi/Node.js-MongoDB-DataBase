@@ -85,9 +85,16 @@ exports.searchUser = (req, res) => {
 }
 
 exports.checkUser = (field, data) => {
-    User.find({field: data}).lean().exec(function (err, users) {
+	toFind = JSON.stringify ("{"+field+" : '"+data+"'}");
+	toFind = JSON.parse (toFind);
+	console.log(toFind);
+    User.find(toFind).lean().exec(function (err, users) {
         if (err) return console.error(err);
-        if (users.length = 0){return false};
+		console.log(users.length);
+        if (users.length > 0){
+			console.log(true);
+			return true;
+		}else{console.log(false);}
 	})}
 
 exports.addManyUsers = (req, res) => {

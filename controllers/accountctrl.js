@@ -1,5 +1,6 @@
 const Account = require('../models/user-account-schema');
 const accountValidator = require('../middlewares/validateaccount');
+const User = require('../modules/user-schema');
 
 // Mostrar login //
 exports.renderLogin = (req , res) => {
@@ -33,4 +34,22 @@ exports.accountRegister = (req , res) => {
        console.log(check);
        res.render('register', {alert: check});
     }
+}
+
+// checkear que no existe el usuario o email //
+
+exports.checkUsername = (data) => {
+
+   return (User.find({username: data}).lean().exec(function (err, users) {
+        if (err) return console.error(err);
+		console.log(users.length);
+		return users.length;
+	}))
+}
+
+exports.checkEmail = (data) => {
+
+    users = (User.find({email: data}).lean())
+		console.log(users);
+		return (users.length);
 }
