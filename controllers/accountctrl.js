@@ -33,7 +33,7 @@ exports.accountRegister = (req , res) => {
 		.then((data) =>{
     		if(check == true){
 				
-				email = data.find({return valor >= 10})
+				email = data.find({return data >= 10})
 				
 				if(email === false){console.log('bien')}
 				allproblems = ["Datos no validos:<br>"];
