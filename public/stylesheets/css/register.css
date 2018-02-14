@@ -121,3 +121,10 @@ input:invalid:focus , textarea:focus {
      text-align: center;
 	
 }
+
+.alert {
+    height: auto;
+    text-align: left;
+    margin: auto;
+    width: 450px;
+}
