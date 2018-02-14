@@ -1,10 +1,8 @@
 const checker = require('../modules/checker')
-//const ValidatorCtrl = require('../controllers/validatorctrl')
+const ValidatorCtrl = require('../controllers/validatorctrl')
 const problem_lost = "Faltan datos necesarios.";
 const problem_username = "El nombre de usuario no es valido.";
-const problem_username_taked = "El nombre de usuario indicado ya esta en uso.";
 const problem_email = "Email incorrecto.";
-const problem_email_taked = "El email proporcionado ya esta vinculado a una cuenta.";
 const problem_password = "Contraseña no valida.";
 const problem_repeated = "La contraseña no puede contener el nombre de usuario.";
 
@@ -40,3 +38,7 @@ exports.validateAccount = (user) => {
 		return checker.addproblem(2,"")	
         
 	} 
+
+exports.seeIfRepeated = (user) => {
+	return ValidatorCtrl.checkPromise(user.username, user.email)
+}

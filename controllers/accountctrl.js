@@ -26,12 +26,14 @@ exports.accountRegister = (req , res) => {
     console.log('Intento de registro');
     console.log(req.body);
     check = accountValidator.validateAccount(req.body);
-	
-    if(check == true){ 
-		console.log('todo correcto');
-		res.send('Registrado');
-	}else{
-       console.log(check);
-       res.render('register', {alert: check});
-    }
+	accountValidator.seeIfRepeated(req.body)
+		.then((data) =>{
+    		if(check == true){
+				console.log('todo correcto');
+				res.send('Registrado');
+			}else{
+       			console.log(check);
+       			res.render('register', {alert: check});
+    		}
+		})
 }

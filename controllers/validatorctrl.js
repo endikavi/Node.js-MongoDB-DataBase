@@ -1,64 +1,19 @@
+const checker = require('../modules/checker')
+const problem_email_taked = "El email proporcionado ya esta vinculado a una cuenta.";
+const problem_username_taked = "El nombre de usuario indicado ya esta en uso.";
+const User = require('../modules/user-schema');
 // checkear que no existe el usuario o email //
 
-exports.checkEmail(){
-       checkEmailpromise(user.email)
-            .then((emailChecked) => {
-                if (emailChecked.length === 0) {
-                    control.log(emailChecked)
-                    addcheck(1);
-                }else{
-					control.log(emailChecked)
-                    addproblem(1,problem_username_taked)
-                }
-            })
-        
-            .catch((err) => {
-                return err;
-            })  
-}
-        ValidatorCtrl.checkUsername(user.username)
-            
-            .then((userChecked) => {
-            
-                 if (userChecked.length === 0) {
-					 control.log(userChecked)
-                     addcheck(1);
-                     
-                     
-                 }else{
-                   addproblem(1,problem_email_taked)
-					control.log(userChecked) 
-                 }                    
-            })
-            
-            .catch((err) => {
-                 return err;
-            }) 
+exports.checkPromise = (username,email) =>{
 
-exports.checkUsername = (data) => {
-
-    return new Promise(function(resolve, reject) {
-    	// Do async job
-       (User.find({username: data}).lean().exec(function(err, result) {
-            if (err) {
-                reject(err);
-            } 
-            resolve(result);            
-        }))
-    })       
+	return new Promise(function (resolve, reject, username, email) {
+		// Do async job
+		(User.find({$or: [{ 'email': email },{ 'username': username }]}).lean().exec(function (err, result) {
+			if (err) {
+				reject(err);
+			}
+			resolve(result);
+		}))
+	})
 }
-function checkEmailpromise = (data) => {
-    
-    return new Promise(function(resolve, reject, data) {
-    	// Do async job
-       (User.find({email: data}).lean().exec(function(err, result) {
-            if (err) {
-                reject(err);
-            } 
-            resolve(result);            
-        }))
-    })         
-}
-
-// checkear la validez de los datos //
 
