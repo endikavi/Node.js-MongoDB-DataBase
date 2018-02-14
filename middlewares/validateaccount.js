@@ -8,7 +8,7 @@ const problem_repeated = "La contraseña no puede contener el nombre de usuario.
 
 regular_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9À-ž]{1,3}\.[0-9À-ž]{1,3}\.[0-9À-ž]{1,3}\.[0-9À-ž]{1,3}])|(([a-zA-ZÀ-ž\-0-9]+\.)+[a-zA-ZÀ-ž]{2,3}))$/;
 regular_username = /(?=^[A-z0-9À-ž]+$).{3,15}$/;
-regular_password_secure = /(?=^[a-zA-Z0-9]+$)(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/;
+regular_password_secure = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}$/;
 
 exports.validateAccount = (user) => {
 
@@ -39,6 +39,6 @@ exports.validateAccount = (user) => {
         
 	} 
 
-exports.seeIfRepeated = (user) => {
-	return ValidatorCtrl.checkPromise(user.username, user.email)
-}
+exports.seeIfRepeated = (user) => {return ValidatorCtrl.checkPromise(user.username, user.email)}
+
+exports.seeIt = (data,user) => {return data.email === user.email}
