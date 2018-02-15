@@ -1,5 +1,5 @@
 const checker = require('../modules/checker')
-const User = require('../modules/user-schema');
+const User = require('../models/user-account-schema');
 // checkear que no existe el usuario o email //
 
 exports.checkPromise = (username,email) =>{
@@ -15,11 +15,4 @@ exports.checkPromise = (username,email) =>{
 	})
 }
 
-exports.checkdata = (user,results) =>{
-	if(results.length == 2){return 3}
-	if(results.length == 0){return true}
-	if(results.find(email === user.email)){console.log('email repetido')}
-	
-	
-}
 

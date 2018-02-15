@@ -1,9 +1,11 @@
 const Account = require('../models/user-account-schema');
 const accountValidator = require('../middlewares/validateaccount');
-const User = require('../modules/user-schema');
+const User = require('../models/user-account-schema');
 const checker = require('../modules/checker')
-const problem_email_taked = "El email proporcionado ya esta vinculado a una cuenta.";
-const problem_username_taked = "El nombre de usuario indicado ya esta en uso.";
+const encrypt = require('../modules/encrypt')
+const problem_email_taked = "el email proporcionado ya esta vinculado a una cuenta.";
+const problem_username_taked = "el nombre de usuario indicado ya esta en uso.";
+
 
 // funcion checkeo //
 
@@ -41,23 +43,21 @@ exports.accountLogin = (req , res) => {
 // Registrarse //
 exports.accountRegister = (req , res) => {
     console.log('Intento de registro');
-    console.log(req.body);
     check = accountValidator.validateAccount(req.body);
 	accountValidator.seeIfRepeated(req.body)
 		.then((data) =>{
     		if(check == true){
-				allproblems = ["Datos no validos:<br>"];
+				allproblems = ["Datos no validos"];
 				email = data.find(repeatedEmail,req.body.email)
 				username = data.find(repeatedUsername,req.body.username)
-                console.log(username + email)
 				if( username !== undefined){checker.addproblem(1,problem_username_taked)}
                 if( email !== undefined){checker.addproblem(1,problem_email_taked)}
                 if( username !== undefined || email !== undefined){
-       			      console.log(checker.addproblem(2,""));
-       			      res.render('register', {alert: checker.addproblem(2,"")});
+       			  res.render('register', {alert: checker.addproblem(2,"")});
     		    }else{
-                      createAccount(req.body);
-                      res.render('login', {alert: "Registro completo"});   
+                      req.body["time"] = Date.now();
+                      req.body["verified"] = false
+                      encrypt.hashPassword(req.body, res)
                 }
 				
 			}else{
@@ -67,11 +67,5 @@ exports.accountRegister = (req , res) => {
 		})
 }
 
-// Crear datos complementarios y hasear la contraseña //
 
-function createAccount (user){
     
-    
-    return
-    
-}

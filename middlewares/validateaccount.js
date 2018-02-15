@@ -1,10 +1,10 @@
 const checker = require('../modules/checker')
 const ValidatorCtrl = require('../controllers/validatorctrl')
-const problem_lost = "Faltan datos necesarios.";
-const problem_username = "El nombre de usuario no es valido.";
-const problem_email = "Email incorrecto.";
-const problem_password = "Contraseña no valida.";
-const problem_repeated = "La contraseña no puede contener el nombre de usuario.";
+const problem_lost = "faltan datos necesarios";
+const problem_username = "el nombre de usuario no es valido";
+const problem_email = "email incorrecto";
+const problem_password = "contraseña no valida.";
+const problem_repeated = "la contraseña no puede contener el nombre de usuario";
 
 regular_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9À-ž]{1,3}\.[0-9À-ž]{1,3}\.[0-9À-ž]{1,3}\.[0-9À-ž]{1,3}])|(([a-zA-ZÀ-ž\-0-9]+\.)+[a-zA-ZÀ-ž]{2,3}))$/;
 regular_username = /(?=^[A-z0-9À-ž]+$).{3,15}$/;
@@ -17,7 +17,7 @@ exports.validateAccount = (user) => {
 		user.password !== "" && user.email !== "" ){
 		
 		x = 0;
-		allproblems = ["Datos no validos:<br>"];
+		allproblems = ["Datos no validos"];
 		
     	if (regular_email.test(user.email)) {checker.addcheck(1);}
 		else{checker.addproblem(1,problem_email)};
