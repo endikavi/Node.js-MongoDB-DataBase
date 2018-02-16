@@ -15,10 +15,10 @@ exports.hashPassword = (req,res) => {
             .then(user => {
 				console.log('Añadido usuario:');
 				console.log(user);
-                res.render('login', {alert: "Registro completo"});  
+                res.render('login', {alert: '<div class="alert alert-success"><p>Registro completo</p></div>'});  
 			 })
 			 .catch(error => {
-				res.render('register', {alert: "Fallo en el registro"});
+				res.render('register', {alert: '<div class="alert alert-danger"><p>Fallo en el registro</p></div>'});
 				console.log('Usuario no añadido');
                 console.log(error);
 			 })

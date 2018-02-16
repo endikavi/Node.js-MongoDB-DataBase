@@ -61,15 +61,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // passport //
-
-passport.use(new LocalStrategy(function (){
-    
-      const user = {};
-    
-      return done(null, user);
-}
-));
-
+ 
+ app.use(passport.initialize());
+ app.use(passport.session());
 // route for pong //
 
 app.get('/pong', passport.authenticate('local') ,function (req, res) {

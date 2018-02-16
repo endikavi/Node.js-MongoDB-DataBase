@@ -8,7 +8,9 @@ const UserAccountSchema = mongoose.Schema({
 	password: {type: String , unique : false , required : true},
 	time: {type: String , unique : false , required : true} ,
 	verified: {type: Boolean , unique : false , default : false} ,
-	
+	admin: {type: Boolean , unique : false , default : false} ,
+    premium: {type: Boolean , unique : false , default : false} ,
+    
     SurvivorOne: {type: String, min: 1, max: 15, unique: false , required : false} ,
     SurvivorTwo: {type: String, min: 1, max: 15, unique: false , required : false} ,
     SurvivorThree: {type: String, min: 1, max: 15, unique: false , required : false} ,
@@ -16,6 +18,13 @@ const UserAccountSchema = mongoose.Schema({
 	packs: { type : Array , "default" : [] }
 	  
 });
+
+UserAccountSchema.methods.verifyPassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
 
 //exportamos el modulo
 module.exports = mongoose.model('gameUser', UserAccountSchema);

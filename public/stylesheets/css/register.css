@@ -122,7 +122,19 @@ input:invalid:focus , textarea:focus {
 	
 }
 
-.alert {
+.alert-danger {
+    min-height: 0px;
+    padding-top: -10px;
+    margin-bottom: 0px;
+    height: auto;
+    text-align: left;
+    margin: auto;
+    width: 450px;
+}
+
+.alert-danger {
+    margin-top: 0px;
+    margin-bottom: 0px;
     height: auto;
     text-align: left;
     margin: auto;
