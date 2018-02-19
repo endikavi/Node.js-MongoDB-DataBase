@@ -9,18 +9,38 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const passport = require('passport');
-const LocalStrategy = require('passport-local')
+const LocalStrategy = require('passport-local');
+const session = require('express-session');
+const uid = require('uid-safe')
+const app = express();
+const router = express.Router();
+
 // Modules //
+// Use the session middleware
 
-
+ 
+// Access the session as req.session
+app.get('/sesionmas',session({secret: 'keyboard cat'}), function(req, res, next) {
+    if (req.session.views) {
+    req.session.views++
+    res.setHeader('Content-Type', 'text/html')
+    res.write('<p>views: ' + req.session.views + '</p>')
+    res.write('<p>id: ' + req.session.id + '</p>')    
+    res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
+    res.end()
+  } else {
+    req.session.views = 1
+    res.write('<p>id: ' + JSON.stringify(req.session) + '</p>')  
+    res.end('welcome to the session demo. refresh!') 
+  }
+    res.end()
+})
 
 // Constants //
 const jsonParser = bodyParser.raw();
 const urlencodedParser = bodyParser.urlencoded({extended: false})
 const mongodbRoute = 'mongodb://endika:endika@ds149865.mlab.com:49865/base_datos_aeg';
 const port = 3001;
-const app = express();
-const router = express.Router();
 const mongodbOptions = {
     useMongoClient: true,
     socketTimeoutMS: 0,
@@ -51,8 +71,13 @@ app.use('/prueba', prueba);
 
 const user = require('./routes/user');
 app.use('/user', user);
+
 const login = require('./routes/login');
 app.use('/', login);
+
+const dashboard = require('./routes/dashboard');
+app.use('/dashboard', dashboard);
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());

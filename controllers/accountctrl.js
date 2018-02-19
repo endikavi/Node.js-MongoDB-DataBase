@@ -7,35 +7,6 @@ const passmid = require('../middlewares/passmid')
 const problem_email_taked = "el email proporcionado ya esta vinculado a una cuenta.";
 const problem_username_taked = "el nombre de usuario indicado ya esta en uso.";
 
-const passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-
-/*
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-*/
 // funcion checkeo //
 
 function repeatedEmail(data){
@@ -62,11 +33,18 @@ exports.renderRegister = (req , res) => {
     res.render('register');
 }
 
+// Mostrar la pagina de dashboard //
+exports.renderDashboard = (req , res) => {
+    console.log('Pedido dashboard');
+    
+    res.end()
+}
+
 // Logearse //
 exports.accountLogin = (req , res) => {
     console.log('Intento de login');
     console.log(req.body);
-    passport.authenticate('local', { successRedirect: '/',failureRedirect: '/login' });
+    encrypt.checkPassword(req, res);
 }
 
 // Registrarse //

@@ -19,12 +19,5 @@ const UserAccountSchema = mongoose.Schema({
 	  
 });
 
-UserAccountSchema.methods.verifyPassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
-
 //exportamos el modulo
 module.exports = mongoose.model('gameUser', UserAccountSchema);
