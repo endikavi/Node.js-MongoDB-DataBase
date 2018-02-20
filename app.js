@@ -7,34 +7,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const validator = require('validator');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const session = require('express-session');
-const uid = require('uid-safe')
 const app = express();
 const router = express.Router();
 
 // Modules //
-// Use the session middleware
-
- 
-// Access the session as req.session
-app.get('/sesionmas',session({secret: 'keyboard cat'}), function(req, res, next) {
-    if (req.session.views) {
-    req.session.views++
-    res.setHeader('Content-Type', 'text/html')
-    res.write('<p>views: ' + req.session.views + '</p>')
-    res.write('<p>id: ' + req.session.id + '</p>')    
-    res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
-    res.end()
-  } else {
-    req.session.views = 1
-    res.write('<p>id: ' + JSON.stringify(req.session) + '</p>')  
-    res.end('welcome to the session demo. refresh!') 
-  }
-    res.end()
-})
 
 // Constants //
 const jsonParser = bodyParser.raw();
@@ -66,6 +42,7 @@ const db = mongoose.connect(mongodbRoute, mongodbOptions, (err) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+/*
 const prueba = require('./routes/Prueba');
 app.use('/prueba', prueba);
 
@@ -76,7 +53,10 @@ const login = require('./routes/login');
 app.use('/', login);
 
 const dashboard = require('./routes/dashboard');
-app.use('/dashboard', dashboard);
+app.use('/dashboard', dashboard);*/
+
+const login = require('./routes/fireroute');
+app.use('/', login);
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -85,13 +65,9 @@ app.use(urlencodedParser);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// passport //
- 
- app.use(passport.initialize());
- app.use(passport.session());
 // route for pong //
 
-app.get('/pong', passport.authenticate('local') ,function (req, res) {
+app.get('/pong',function (req, res) {
     console.log('Pedido el pong')
     res.render('pong')
 })

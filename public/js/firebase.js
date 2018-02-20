@@ -1,13 +1,14 @@
 // Initialize Firebase
-  var config = {
+var config = {
     apiKey: "AIzaSyDmOZ-T8hw2juYZ-3x31SQpUoayLmAwkbk",
     authDomain: "base-de-imagenes.firebaseapp.com",
     databaseURL: "https://base-de-imagenes.firebaseio.com",
     projectId: "base-de-imagenes",
     storageBucket: "base-de-imagenes.appspot.com",
     messagingSenderId: "473956583897"
-  };
-  firebase.initializeApp(config);
+};
+
+firebase.initializeApp(config);
 
     var auth = firebase.auth();
     var storageRef = firebase.storage().ref();
@@ -19,7 +20,7 @@
 
       var metadata = {
         'contentType': file.type
-      };
+};
 
       // Push to child path.
       // [START oncomplete]
