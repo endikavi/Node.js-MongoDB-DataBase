@@ -1,5 +1,9 @@
 
-function singIn(){
+function signIn(){
+    
+    var email = document.getElementById('Email').value;
+    var password = document.getElementById('Password').value;
+    
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -14,6 +18,10 @@ function singIn(){
 }
 
 function logIn(){
+    
+    var email = document.getElementById('Email').value;
+    var password = document.getElementById('Password').value;
+    
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -51,7 +59,7 @@ firebase.auth().sendPasswordResetEmail(email).then(function() {
 });
 }
 
-function listener(){
+//listener
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -61,7 +69,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log('Usuario desconectado');
   }
 });
-}
+
 
 function logOut(){
 firebase.auth().signOut(); 

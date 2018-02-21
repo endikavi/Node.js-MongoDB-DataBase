@@ -1,7 +1,24 @@
 <!DOCTYPE html>
+<html>
+<head>
+{{!-- {{Scripts varios}} --}}
 <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-<script src="/js/setfirebase.js"></script>
-
+{{!-- {{Estilos varios}} --}}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="/stylesheets/signin.css" rel="stylesheet">
+{{!-- {{Metadatas}} --}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="{{{description}}}">
+<meta name="author" content="Endika Vicioso">
+<title>{{{title}}}</title>
+</head>
+<body>
+{{!-- {{Aqui va lo que se renderize}} --}}
 {{{body}}}
-
+</body>
+{{!-- {{Inicializar firebase}} --}}
+<script src="/js/setfirebase.js"></script>
+<script src="/js/fireauth.js"></script>
+</html>
 
