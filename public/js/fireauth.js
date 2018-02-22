@@ -42,9 +42,7 @@ function logIn(){
         console.error(error);
         console.error(errorCode);
         console.error(errorMessage);
-        }
-        // [END_EXCLUDE]
-    });
+        })
 }
 
 function emailVerify(){
