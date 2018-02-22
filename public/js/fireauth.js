@@ -21,17 +21,29 @@ function logIn(){
     
     var email = document.getElementById('Email').value;
     var password = document.getElementById('Password').value;
+    var username = document.getElementById('Username').value;
     
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    if (errorCode == 'auth/weak-password') {
-        console.log('The password is too weak.');
-    } else {
-        console.log(errorMessage);
-    }
-        console.log(error);
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(function(user) {
+        var user = firebase.auth().currentUser;
+        user.updateProfile({
+            displayName: username
+        }).then(function() {
+            console.error('usuario añadido con username');
+        }, function(error) {
+            console.error('username no cambiado');
+        });        
+    }, function(error) {
+        // Handle Errors here.
+        console.error('usuario no añadido');
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.error(error);
+        console.error(errorCode);
+        console.error(errorMessage);
+        }
+        // [END_EXCLUDE]
     });
 }
 

@@ -3,11 +3,11 @@
       <img class="mb-4" src="/img/iconologin.png" alt="icono de la aplicacion" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Bienvenido a mi app</h1>
       <label for="Email" class="sr-only">Email address</label>
-      <input type="email" name="e" id="Email" class="form-control" placeholder="Email address" required pattern='^[^@]+@[^@]+\.[^@]+$' minlength="8" maxlength="40" required autofocus>
+      <input type="email" name="e" id="Email" class="form-control" placeholder="Email address" required pattern='^[^@]+@[^@]+\.[^@]{2,3}$' minlength="8" maxlength="40" title="El email dede de ser correcto o no podras validar la cuenta." required autofocus>
       <label for="Username" class="sr-only">Username</label>
-      <input type="text" name="u" id="Username" class="form-control" placeholder="Username" required pattern="[A-z0-9À-ž]{3,15}$" minlength="3" maxlength="15" required>
+      <input type="text" name="u" id="Username" class="form-control" placeholder="Username" required pattern="[A-z0-9À-ž]{3,15}$" minlength="3" maxlength="15" title="Nombre con el que se identificara, de 3 a 15 letras." required> 
       <label for="Password" class="sr-only">Password</label>
-      <input type="password" name="p" id="Password" class="form-control" placeholder="Password" required pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}" minlength="8" maxlength="40" required>
+      <input type="password" name="p" id="Password" class="form-control" placeholder="Password" required pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,40}" minlength="8" maxlength="40" title="La contraseña necesita de 8 y 40 caracteres y debe incluir minusculas,mayusculas y numeros." required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" id="accept" value="true" required> Acepto las condiciones de uso
