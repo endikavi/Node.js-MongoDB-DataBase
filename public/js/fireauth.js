@@ -1,4 +1,3 @@
-
 function signIn(){
     
     var email = document.getElementById('Email').value;
@@ -29,7 +28,7 @@ function logIn(){
         user.updateProfile({
             displayName: username
         }).then(function() {
-            console.error('usuario añadido con username');
+            console.log('usuario añadido con username');
         }, function(error) {
             console.error('username no cambiado');
         });        
@@ -43,6 +42,30 @@ function logIn(){
         console.error(errorCode);
         console.error(errorMessage);
         })
+}
+
+function logInGoogle(){
+    
+     var provider = new firebase.auth.GoogleAuthProvider(); 
+        
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+       
+        }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+        });
+    
 }
 
 function emailVerify(){
@@ -84,3 +107,38 @@ firebase.auth().onAuthStateChanged(function(user) {
 function logOut(){
 firebase.auth().signOut(); 
 }
+
+function viewRegisterForm(){
+    document.getElementById('Email').style.display = 'block';
+    document.getElementById('Password').style.display = 'block';
+    document.getElementById('Username').style.display = 'block';
+    document.getElementById('Accept').style.display = 'block';
+    document.getElementById('Register-button').style.display = 'block';
+    document.getElementById('Register').style.display = 'none';
+    document.getElementById('Login').style.display = 'none';
+    document.getElementById('Google').style.display = 'none';
+}
+
+function viewLoginForm(){
+    document.getElementById('Password').style.display = 'block';
+    document.getElementById('Username').style.display = 'none';
+    document.getElementById('Email').style.display = 'block';
+    document.getElementById('Accept').style.display = 'none';
+    document.getElementById('Login-button').style.display = 'block';
+    document.getElementById('Register').style.display = 'none';
+    document.getElementById('Login').style.display = 'none';
+    document.getElementById('Google').style.display = 'none';
+}
+
+function viewreset(){
+    document.getElementById('Email').style.display = 'none';
+    document.getElementById('Password').style.display = 'none';
+    document.getElementById('Username').style.display = 'none';
+    document.getElementById('Accept').style.display = 'none';
+    document.getElementById('Register-button').style.display = 'none';
+    document.getElementById('Login-button').style.display = 'none';
+    document.getElementById('Register').style.display = 'block';
+    document.getElementById('Login').style.display = 'block';
+    document.getElementById('Google').style.display = 'block';
+}
+

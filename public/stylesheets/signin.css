@@ -76,3 +76,22 @@ input:invalid:focus , textarea:focus {
     border-width: 1px;
     background-color:rgb(237,237,237);
 }
+.button-register{
+    margin: auto;
+    width: 220px;
+    
+}
+.button-register-google{
+    margin: auto;
+    width: 220px;
+    
+}
+.button-login{
+    margin: auto;
+    width: 220px;
+    
+}
+.box-button-register{
+    
+    
+}
