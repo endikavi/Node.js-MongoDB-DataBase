@@ -109,6 +109,8 @@ firebase.auth().signOut();
 }
 
 function viewRegisterForm(){
+    document.getElementById('Titulo').style.display = 'none';
+    document.getElementById('Reset').style.display = 'block';
     document.getElementById('Email').style.display = 'block';
     document.getElementById('Password').style.display = 'block';
     document.getElementById('Username').style.display = 'block';
@@ -120,6 +122,8 @@ function viewRegisterForm(){
 }
 
 function viewLoginForm(){
+    document.getElementById('Titulo').style.display = 'none';
+    document.getElementById('Reset').style.display = 'block';
     document.getElementById('Password').style.display = 'block';
     document.getElementById('Username').style.display = 'none';
     document.getElementById('Email').style.display = 'block';
@@ -130,7 +134,9 @@ function viewLoginForm(){
     document.getElementById('Google').style.display = 'none';
 }
 
-function viewreset(){
+function viewReset(){
+    document.getElementById('Titulo').style.display = 'block';
+    document.getElementById('Reset').style.display = 'none';
     document.getElementById('Email').style.display = 'none';
     document.getElementById('Password').style.display = 'none';
     document.getElementById('Username').style.display = 'none';
