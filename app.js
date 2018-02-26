@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 const router = express.Router();
+const hbs = require('hbs');
 
 // Modules //
 
@@ -51,9 +52,9 @@ app.use('/user', user);
 
 const login = require('./routes/login');
 app.use('/', login);
-
+*/
 const dashboard = require('./routes/dashboard');
-app.use('/dashboard', dashboard);*/
+app.use('/dashboard', dashboard);
 
 const login = require('./routes/fireroute');
 app.use('/', login);

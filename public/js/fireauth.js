@@ -97,9 +97,11 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     console.log(user);
+    viewUserData();
   } else {
     // User is signed out.
     console.log('Usuario desconectado');
+    viewReset();
   }
 });
 
@@ -119,6 +121,8 @@ function viewRegisterForm(){
     document.getElementById('Register').style.display = 'none';
     document.getElementById('Login').style.display = 'none';
     document.getElementById('Google').style.display = 'none';
+    document.getElementById('Salir').style.display = 'none';
+    document.getElementById('Go').style.display = 'none';
 }
 
 function viewLoginForm(){
@@ -132,6 +136,8 @@ function viewLoginForm(){
     document.getElementById('Register').style.display = 'none';
     document.getElementById('Login').style.display = 'none';
     document.getElementById('Google').style.display = 'none';
+    document.getElementById('Salir').style.display = 'none';
+    document.getElementById('Go').style.display = 'none';
 }
 
 function viewReset(){
@@ -146,5 +152,23 @@ function viewReset(){
     document.getElementById('Register').style.display = 'block';
     document.getElementById('Login').style.display = 'block';
     document.getElementById('Google').style.display = 'block';
+    document.getElementById('Salir').style.display = 'none';
+    document.getElementById('Go').style.display = 'none';
+}
+
+function viewUserData(){
+    document.getElementById('Titulo').style.display = 'none';
+    document.getElementById('Reset').style.display = 'none';
+    document.getElementById('Email').style.display = 'none';
+    document.getElementById('Password').style.display = 'none';
+    document.getElementById('Username').style.display = 'none';
+    document.getElementById('Accept').style.display = 'none';
+    document.getElementById('Register-button').style.display = 'none';
+    document.getElementById('Login-button').style.display = 'none';
+    document.getElementById('Register').style.display = 'none';
+    document.getElementById('Login').style.display = 'none';
+    document.getElementById('Google').style.display = 'none';
+    document.getElementById('Salir').style.display = 'block';
+    document.getElementById('Go').style.display = 'block';
 }
 

@@ -37,7 +37,12 @@ exports.renderRegister = (req , res) => {
 exports.renderDashboard = (req , res) => {
     console.log('Pedido dashboard');
     
-    res.end()
+    User.find().lean().exec(function (err, users) {
+		if (err) return console.error(err);
+		console.log('Se pidio la lista de usuarios,actualmente contiene ' + users.length + ' usuarios');
+        console.log(users)
+        res.render('dashboard', {user: users});
+    })
 }
 
 // Logearse //

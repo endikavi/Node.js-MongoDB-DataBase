@@ -4,6 +4,7 @@ body {
 }
 
 body {
+   
     
   display: -ms-flexbox;
   display: -webkit-box;
@@ -12,7 +13,7 @@ body {
   -ms-flex-pack: center;
   -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
+  -webkit-box-pack: center;  
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -28,7 +29,7 @@ body {
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin: auto;
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -86,12 +87,40 @@ input:invalid:focus , textarea:focus {
     width: 220px;
     
 }
+
 .button-login{
     margin: auto;
     width: 220px;
     
 }
+
+.button-logout{
+    margin: auto;
+    width: 220px;
+    
+}
+
+.button-go{
+    margin: auto;
+    width: 220px;
+    
+}
+
 .box-button-register{
     
+    
+}
+
+.centrado{
+    
+   
+    max-width: 1100px;
+    padding-top: 300px;
+  
+}
+
+.box-user{
+    
+    max-width: 430px;
     
 }
